@@ -1,0 +1,84 @@
+<dif:DIF xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/">
+  <dif:Entry_ID>no.met:6f8befa6-2811-420f-b1e2-441deb32a5ec</dif:Entry_ID>
+  <dif:Entry_Title>dummy title</dif:Entry_Title>
+  <dif:Data_Set_Citation>
+    <dif:Dataset_Creator/>
+    <dif:Dataset_Title>dummy title</dif:Dataset_Title>
+    <dif:Dataset_Series_Name/>
+    <dif:Dataset_Release_Date>2023-03-31T07:40:13.595353Z</dif:Dataset_Release_Date>
+    <dif:Dataset_Release_Place/>
+    <dif:Dataset_Publisher/>
+    <dif:Version/>
+    <dif:Other_Citation_Details/>
+    <dif:Dataset_DOI/>
+    <dif:Online_Resource/>
+  </dif:Data_Set_Citation>
+  <dif:Personnel>
+    <dif:Role>Investigator</dif:Role>
+    <dif:Last_Name>Not available</dif:Last_Name>
+    <dif:Email>Not available</dif:Email>
+  </dif:Personnel>
+  <dif:Parameters>
+    <dif:Category>EARTH SCIENCE</dif:Category>
+    <dif:Topic>ATMOSPHERE</dif:Topic>
+    <dif:Term>ATMOSPHERIC TEMPERATURE</dif:Term>
+    <dif:Variable_Level_1>SURFACE TEMPERATURE</dif:Variable_Level_1>
+    <dif:Variable_Level_2>AIR TEMPERATURE</dif:Variable_Level_2>
+  </dif:Parameters>
+  <dif:ISO_Topic_Category>climatologyMeteorologyAtmosphere</dif:ISO_Topic_Category>
+  <dif:ISO_Topic_Category>environment</dif:ISO_Topic_Category>
+  <dif:ISO_Topic_Category>oceans</dif:ISO_Topic_Category>
+  <dif:Temporal_Coverage>
+    <dif:Start_Date>2023-03-30T08:00:00Z</dif:Start_Date>
+    <dif:Stop_Date>2023-03-31T07:00:00Z</dif:Stop_Date>
+  </dif:Temporal_Coverage>
+  <dif:Data_Set_Progress>COMPLETE</dif:Data_Set_Progress>
+  <dif:Spatial_Coverage>
+    <dif:Southernmost_Latitude>59.942300</dif:Southernmost_Latitude>
+    <dif:Northernmost_Latitude>59.942300</dif:Northernmost_Latitude>
+    <dif:Westernmost_Longitude>10.720000</dif:Westernmost_Longitude>
+    <dif:Easternmost_Longitude>10.720000</dif:Easternmost_Longitude>
+  </dif:Spatial_Coverage>
+  <dif:Use_Constraints>CC-BY-4.0</dif:Use_Constraints>
+  <dif:Data_Set_Language>en</dif:Data_Set_Language>
+  <dif:Originating_Center>Not available</dif:Originating_Center>
+  <dif:Data_Center>
+    <dif:Data_Center_Name>
+      <dif:Short_Name>NO/MET</dif:Short_Name>
+      <dif:Long_Name>Norwegian Meteorological Institute</dif:Long_Name>
+    </dif:Data_Center_Name>
+    <dif:Data_Center_URL/>
+    <dif:Personnel>
+      <dif:Role/>
+      <dif:Last_Name/>
+      <dif:Phone/>
+      <dif:Fax/>
+      <dif:Contact_Address>
+        <dif:Address/>
+        <dif:City/>
+        <dif:Province_or_State/>
+        <dif:Postal_Code/>
+        <dif:Country/>
+      </dif:Contact_Address>
+    </dif:Personnel>
+  </dif:Data_Center>
+  <dif:Distribution>
+    <dif:Distribution_Size>0.02 MB</dif:Distribution_Size>
+    <dif:Distribution_Format>NetCDF-CF</dif:Distribution_Format>
+  </dif:Distribution>
+  <dif:Summary>
+    <dif:Abstract>dummy summary</dif:Abstract>
+    <dif:Purpose/>
+  </dif:Summary>
+  <dif:Related_URL>
+    <dif:URL_Content_Type>
+      <dif:Type>VIEW DATASET LANDING PAGE</dif:Type>
+    </dif:URL_Content_Type>
+    <dif:URL>https://met.no/</dif:URL>
+    <dif:Description/>
+  </dif:Related_URL>
+  <dif:Metadata_Name>CEOS IDN DIF</dif:Metadata_Name>
+  <dif:Metadata_Version>9.8.4</dif:Metadata_Version>
+  <dif:DIF_Creation_Date>2023-03-31T07:40:13.595353Z</dif:DIF_Creation_Date>
+  <dif:Last_DIF_Revision_Date>2023-03-31T07:40:13.595353Z</dif:Last_DIF_Revision_Date>
+</dif:DIF>
