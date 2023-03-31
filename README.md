@@ -2,6 +2,7 @@
 Technical architecture document for E-SOH
 
 1. Introduction
+
    1.1. Purpose of the Document
    1.2. Scope of the System
    1.3. Definitions, Acronyms, and Abbreviations
@@ -9,15 +10,19 @@ Technical architecture document for E-SOH
    1.5. Document Structure
 
 2. System Overview
+
    2.1 System Architecture
    2.2. High-Level System Components
    2.3. Interfaces and Interactions
    2.4. Key Design Principles and Constraints
 3. Detailed Design
+   
    3.1. Component-Level Design
+   
         3.1.1. Component Descriptions
         3.1.2. Component Dependencies
         3.1.3. Component Interfaces
+        
    3.2. Data Models and Structures
         3.2.1. Entity-Relationship Diagrams
         3.2.2. Data Flow Diagrams
