@@ -32,7 +32,7 @@ The TDD is intended to be a living document, updated as necessary throughout the
 * WIS 2 Notification Message Encoding; https://github.com/wmo-im/wis2-notification-message
 * EU High Value Datasets in Open Data Directive: https://eur-lex.europa.eu/eli/reg_impl/2023/138/oj
 * Discovery Metadata vocabulary: https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3
-* CF standard ontology: https://vocab.nerc.ac.uk/standard_name/
+* CF standard ontology: https://vocab.nerc.ac.uk/standard_name/ https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
 * OGC API - Environmental Data Retrieval Standard v1.0.1 https://docs.ogc.org/is/19-086r5/19-086r5.html
 
 
