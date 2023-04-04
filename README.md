@@ -34,6 +34,60 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ## 2. System Overview
 ### 2.1. Architecture
+#### 2.1.1. Context Diagram
+
+```mermaid
+C4Context
+Person(consumers, "Data Consumer", "A data consumer can be a human (advanced, intermediate or simple users) or a machine (e.g., a mobile app or a data portal). Simple and intermediate users search, inspect, and access data via an external interface (e.g., a mobile app or data portal). Advanced users acess the search, visualization, and distribution services directly. Open licenses and well documented data following international standards enable Interoperability and Reusability.")
+SystemDb_Ext(oscar, "OSCAR", "Web resource with WIGOS metadata for all surface-based observing stations and platforms.")
+
+Enterprise_Boundary(nhms, "National Meteorological and Hydrological Service (NMHS)"){
+  Person(dataproducer, "Dataset Producer")
+  System(productionhub, "Production systems", "Automated system for data production.")
+  SystemDb(datastore, "Data storage", "File system for storage of timeseries.")
+
+  System_Boundary(e-soh, "E-SOH node"){
+    SystemDb(store24, "Data storage", "File system for storage of 24 hours of data.")
+    SystemQueue(queue, "Notification Service", "MQTT Event Queue. WIS2 real-time data sharing by a publication/subscription (PubSub) mechanism based on the Message Queuing Protocol (MQP).")
+    SystemDb(discovery24, "Catalog", "Discovery Metadata Catalog. Database that can serve APIs and landing pages.")
+    System(agent, "Metadata agent", "Subscriber agent that listens for new events from the queue.")
+    System(edr, "Processing", "The OGC EDR API searches for data according to user requests, lets the user define data collections (or new datasets), retrieves data, and packs the data in appropriate formats to be returned to the user. Could store metadata of retrieved datasets as well.") 
+    SystemDb(edr_store, "EDR Metadata store", "Possible storage of files with discovery metadata for datasets created by users with the EDR API. This could also be used to get usage metrics and trace data.")
+    System(search, "Data search API", "E.g, OGC Records or CSW.")
+    System(access, "Data access API", "E.g., OPEnDAP.")
+    System(bufr, "BUFR exporter", "Tool to create BUFR files that will be posted to GTS by WIS2.0 systems. We need to now what and when (or how often). Could possibly also generate other file based products.")
+    System(website, "Website", "Website for persistent dataset landing pages.")
+  }
+}
+
+System_Ext(wis2, "WIS2.0", "WIS2.0 system(s).")
+
+Rel_U(bufr, wis2, "posts to GTS via", "https")
+
+Rel(productionhub, queue, "posts metadata in", "MQTT")
+Rel_D(agent, queue, "listens for events from", "uri")
+Rel_D(agent, discovery24, "ingests metadata in", "https")
+Rel(agent, store24, "stores data in", "uri")
+Rel(agent, datastore, "gets data from", "uri")
+Rel(discovery24, oscar, "references metadata in", "uri")
+Rel(edr, search, "finds data in", "https")
+Rel(edr, access, "accesses data in", "https")
+Rel(access, store24, "streams data from", "https")
+Rel(search, discovery24, "returns metadata from")
+Rel(website, discovery24, "serves dynamical landing pages for datasets in")
+Rel(website, edr_store, "serves dynamical landing pages for datasets in")
+Rel_L(edr, edr_store, "stores metadata in")
+
+Rel(consumers, search, "finds data in", "https")
+Rel(consumers, access, "accesses data in", "https")
+Rel(consumers, edr, "gets datasets from", "https")
+
+Rel(dataproducer, productionhub, "sets up data production in")
+
+Rel(productionhub, datastore, "appends data to")
+```
+
+
 ### 2.2. Components and Interfaces
 
 ## 3. Detailed Design
