@@ -89,7 +89,6 @@ Rel(dataproducer, productionhub, "sets up data production in")
 Rel(productionhub, datastore, "appends data to")
 
 UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
-SHOW_LEGEND()
 
 ```
 
