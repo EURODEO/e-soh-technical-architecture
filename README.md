@@ -41,32 +41,35 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ### 4.4. API Rate Limiting and Throttling
 
 
-5.Security and Privacy
-   5.1. Data Protection and Encryption
-   5.2. Authentication and Authorization
-   5.3. Auditing and Logging
-   5.4. Secure Coding Practices
-   5.5. Vulnerability and Threat Mitigation
+## 5.Security and Privacy
+### 5.1. Data Protection and Encryption
+### 5.2. Authentication and Authorization
+### 5.3. Auditing and Logging
+### 5.4. Secure Coding Practices
+### 5.5. Vulnerability and Threat Mitigation
 
-6. Performance and Scalability
-   6.1. Performance Requirements
-   6.2. Performance Testing and Profiling
-   6.3. Caching Strategies
-   6.4. Load Balancing and Failover
-   6.5. Vertical and Horizontal Scaling
-7. Deployment and Operations
-   7.1. Deployment Environments
-   7.2. Deployment Process
-   7.3. Monitoring and Alerting
-   7.4. Backup and Recovery
-   7.5. Disaster Recovery and Business Continuity
-8. Maintenance and Support
-   8.1. Code Management and Versioning
-   8.2. Bug Tracking and Issue Resolution
-   8.3. Feature Enhancements and Roadmap
-   8.4. Documentation and Training
-   8.5. Support Channels and SLAs
-9. Conclusion
-   9.1. Key Takeaways
-   9.2. Future Considerations
-   9.3. Final Remarks
+## 6. Performance and Scalability
+### 6.1. Performance Requirements
+### 6.2. Performance Testing and Profiling
+### 6.3. Caching Strategies
+### 6.4. Load Balancing and Failover
+### 6.5. Vertical and Horizontal Scaling
+
+## 7. Deployment and Operations
+### 7.1. Deployment Environments
+### 7.2. Deployment Process
+### 7.3. Monitoring and Alerting
+### 7.4. Backup and Recovery
+### 7.5. Disaster Recovery and Business Continuity
+
+## 8. Maintenance and Support
+### 8.1. Code Management and Versioning
+### 8.2. Bug Tracking and Issue Resolution
+### 8.3. Feature Enhancements and Roadmap
+### 8.4. Documentation and Training
+### 8.5. Support Channels and SLAs
+
+## 9. Conclusion
+### 9.1. Key Takeaways
+### 9.2. Future Considerations
+### 9.3. Final Remarks
