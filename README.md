@@ -38,6 +38,8 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ```mermaid
 C4Context
+title E-SOH Context Diagram
+
 Person(consumers, "Data Consumer", "A data consumer can be a human (advanced, intermediate or simple users) or a machine (e.g., a mobile app or a data portal). Simple and intermediate users search, inspect, and access data via an external interface (e.g., a mobile app or data portal). Advanced users acess the search, visualization, and distribution services directly. Open licenses and well documented data following international standards enable Interoperability and Reusability.")
 SystemDb_Ext(oscar, "OSCAR", "Web resource with WIGOS metadata for all surface-based observing stations and platforms.")
 
@@ -85,6 +87,10 @@ Rel(consumers, edr, "gets datasets from", "https")
 Rel(dataproducer, productionhub, "sets up data production in")
 
 Rel(productionhub, datastore, "appends data to")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+SHOW_LEGEND()
+
 ```
 
 
