@@ -1,5 +1,4 @@
-# e-soh-technical-architecture
-Technical architecture document for E-SOH
+# Technical Architecture Document for E-SOH
 
 ## 1. Introduction
 
