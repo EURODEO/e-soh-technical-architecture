@@ -16,10 +16,11 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ### 1.2. Definitions, Acronyms, and Abbreviations
 
-| Abbreviation             |                                                  |
+| Abbreviation             | Meaning                                                 |
 |--------------------------|--------------------------------------------------|
-| EDR                      | OGC API - Environmental Data Retrieval |
+| EDR                      | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/) |
 | E-SOH                    | |
+| EWC                      | [European Weather Cloud](https://www.europeanweather.cloud) |
 
 ### 1.3. References
 
