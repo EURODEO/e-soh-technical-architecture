@@ -38,9 +38,10 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ```mermaid
 C4Context
+
 title E-SOH Context Diagram
 
-Person(consumers, "Data Consumer", "A data consumer can be a human (advanced, intermediate or simple users) or a machine (e.g., a mobile app or a data portal).\nSimple and intermediate users search, inspect, and access data via an external interface (e.g., a mobile app or data portal). Advanced users acess the search, visualization, and distribution services directly. Open licenses and well documented data following international standards enable Interoperability and Reusability.")
+Person(consumers, "Data Consumer", "A data consumer can be a human (advanced, intermediate or simple users) or a machine (e.g., a mobile app or a data portal).<br>Simple and intermediate users search, inspect, and access data via an external interface (e.g., a mobile app or data portal). <br> Advanced users acess the search, visualization, and distribution services directly. <br> Open licenses and well documented data following international standards enable Interoperability and Reusability.")
 SystemDb_Ext(oscar, "OSCAR", "Web resource with WIGOS metadata for all surface-based observing stations and platforms.")
 
 Enterprise_Boundary(nhms, "National Meteorological and Hydrological Service (NMHS)"){
@@ -53,8 +54,8 @@ Enterprise_Boundary(nhms, "National Meteorological and Hydrological Service (NMH
     SystemQueue(queue, "Notification Service", "MQTT Event Queue. WIS2 real-time data sharing by a publication/subscription (PubSub) mechanism based on the Message Queuing Protocol (MQP).")
     SystemDb(discovery24, "Catalog", "Discovery Metadata Catalog. Database that can serve APIs and landing pages.")
     System(agent, "Metadata agent", "Subscriber agent that listens for new events from the queue.")
-    System(edr, "Processing", "The OGC EDR API searches for data according to user requests, lets the user define data collections (or new datasets), retrieves data, and packs the data in appropriate formats to be returned to the user. Could store metadata of retrieved datasets as well.") 
-    SystemDb(edr_store, "EDR Metadata store", "Possible storage of files with discovery metadata for datasets created by users with the EDR API. This could also be used to get usage metrics and trace data.")
+    System(edr, "Processing", "The OGC EDR API searches for data according to user requests, lets the user define data collections (or new datasets),<br> retrieves data, and packs the data in appropriate formats to be returned to the user. Could store metadata of retrieved datasets as well.") 
+    SystemDb(edr_store, "EDR Metadata store", "Possible storage of files with discovery metadata for datasets created by users with the EDR API. <br>This could also be used to get usage metrics and trace data.")
     System(search, "Data search API", "E.g, OGC Records or CSW.")
     System(access, "Data access API", "E.g., OPEnDAP.")
     System(bufr, "BUFR exporter", "Tool to create BUFR files that will be posted to GTS by WIS2.0 systems. We need to now what and when (or how often). Could possibly also generate other file based products.")
@@ -88,8 +89,10 @@ Rel(dataproducer, productionhub, "sets up data production in")
 
 Rel(productionhub, datastore, "appends data to")
 
-UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+UpdateElementStyle(consumers, $fontSize="36")
 
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+  
 ```
 
 
