@@ -14,7 +14,13 @@ The purpose of this Technical Design Document (TDD) is to provide a comprehensiv
 The TDD is intended to be a living document, updated as necessary throughout the software development life cycle to reflect any changes or refinements made to the system design. It is essential for all stakeholders, including project managers, developers, testers, and end-users, to have a clear understanding of the software system's design to ensure effective collaboration and successful project completion.
 
 
-### 1.2. Definitions and Acronyms
+### 1.2. Definitions, Acronyms, and Abbreviations
+
+| Abbreviation             |                                                  |
+|--------------------------|--------------------------------------------------|
+| EDR                      | OGC API - Environmental Data Retrieval |
+| E-SOH                    | |
+
 ### 1.3. References
 
 * WIS 2.0 MQTT topic architecture: https://github.com/wmo-im/wis2-topic-hierarchy
