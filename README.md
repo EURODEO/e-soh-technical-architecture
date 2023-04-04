@@ -16,11 +16,14 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ### 1.2. Definitions, Acronyms, and Abbreviations
 
-| Abbreviation             | Meaning                                                 |
-|--------------------------|--------------------------------------------------|
+| Abbreviation             | Meaning                                                               |
+|--------------------------|-----------------------------------------------------------------------|
+| API                      | Application Programming Interface                                     |
+| AWS                      | Automatic Weather Station                                             |
 | EDR                      | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/) |
-| E-SOH                    | |
-| EWC                      | [European Weather Cloud](https://www.europeanweather.cloud) |
+| E-SOH                    | EUMETNET Supplementary Observation dataHub                            |
+| EWC                      | [European Weather Cloud](https://www.europeanweather.cloud)           |
+| FEMDI                    | Federated European Meteorological Data Infrastructure                 |
 
 ### 1.3. References
 
@@ -34,7 +37,8 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ## 2. System Overview
 ### 2.1. Architecture
-#### 2.1.1. Context Diagram
+#### 2.1.1. Landscape Diagram
+#### 2.1.2. Context Diagram
 
 ```mermaid
 C4Context
@@ -94,6 +98,8 @@ UpdateElementStyle(consumers, $fontSize="36")
 UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
   
 ```
+
+#### 2.1.3. Container Diagram
 
 
 ### 2.2. Components and Interfaces
