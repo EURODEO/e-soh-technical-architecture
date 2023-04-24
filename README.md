@@ -38,7 +38,7 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ## 2. System Overview
 ### 2.1. Architecture
-#### 2.1.1. Top Level Diagram
+#### 2.1.1. Context Diagram
 
 ![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
 
