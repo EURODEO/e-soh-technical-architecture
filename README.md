@@ -151,16 +151,16 @@ By defining these performance requirements upfront, the development team can mak
 ### 6.5. Vertical and Horizontal Scaling
 
 ## 7. Deployment and Operations
+
+All environments run in EWC.
+
 ### 7.1. Deployment Environments
 This section provides an overview of the deployment strategy and environments that are employed to ensure the smooth operation and management of the system. The purpose of outlining these is to create a clear understanding of how the system components are deployed, configured, and maintained across various stages of development and production.
 
 **Development Environment:**
 The development environment is where developers write, test, and debug the code for the system. It is a local setup that includes all necessary tools, frameworks, and dependencies for building and running the application components. This environment is isolated from other environments to allow developers to work on new features and improvements without affecting the stability of the system in other environments.
 
-**Testing Environment:**
-The testing environment is designed to rigorously validate the functionality, performance, and security of the application components before they are deployed to production. This environment mimics the production environment as closely as possible, with the same configurations and infrastructure. The testing environment is used for various types of tests, including unit tests, integration tests, system tests, and performance tests, among others.
-
-**Staging Environment:**
+**Staging / Acceptance Environment:**
 The staging environment is a pre-production environment that closely mirrors the production environment in terms of infrastructure and configurations. It is used to perform final validation of the system components and ensure that they are production-ready. This environment is crucial for identifying and resolving any potential issues that may arise during deployment or operation in the production environment.
 
 **Production Environment:**
