@@ -44,11 +44,11 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 #### 2.1.2. Landscape Diagram
 
-![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
+![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
 
 #### 2.1.3. Container Diagram
 
-![C4 container diagram](https://github.com/EURODEO/e-soh-c4/main/03-container-diagram/c4-container-diagram.png)
+![C4 container diagram](https://github.com/EURODEO/e-soh-c4/blob/main/03-container-diagram/c4-container-diagram.png)
 
 ### 2.2. Components and Interfaces
 
