@@ -108,7 +108,6 @@ UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ## 3. Detailed Design
 ### 3.1. Component Design
 ### 3.2. Data Models
-### 3.3. Algorithms and Flows
 
 ## 4. Integration and APIs
 ### 4.1. External Integrations
