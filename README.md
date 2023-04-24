@@ -199,6 +199,7 @@ By implementing a robust CI/CD pipeline, the deployment architecture enables rap
 ### 8.3. Feature Enhancements and Roadmap
 ### 8.4. Documentation and Training
 ### 8.5. Support Channels and SLAs
+* 99% NBD support
 
 ## 9. Conclusion
 ### 9.1. Key Takeaways
