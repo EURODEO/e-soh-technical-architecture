@@ -40,15 +40,15 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ### 2.1. Architecture
 #### 2.1.1. Top Level Diagram
 
-![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/1785854402589890bc695b719eaf0d09cea482c7/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
+![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
 
 #### 2.1.2. Landscape Diagram
 
-![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/122177cb83e88ea28a0bce2145bc2cf06f2049a7/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
+![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
 
 #### 2.1.3. Container Diagram
 
-![C4 container diagram](https://github.com/EURODEO/e-soh-c4/blob/9d6413dbf9da099e61d5d19cd3d4c4dcabbdd498/03-container-diagram/c4-container-diagram.png)
+![C4 container diagram](https://github.com/EURODEO/e-soh-c4/main/03-container-diagram/c4-container-diagram.png)
 
 ### 2.2. Components and Interfaces
 
