@@ -66,6 +66,11 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ### 4.1. External Integrations
 * GTS
 * OSCAR
+OSCAR/Surface is the World Meteorological Organization's official repository of WIGOS metadata for all surface-based observing stations and platforms. Metadata on the capabilities of observing stations / platforms and their instruments and methods of observation, are routinely submitted to and maintained in OSCAR/Surface by WMO Members. The E-SOH system will retrieve metadata about the observation station from Oscar in case it is missing in provided data (i.e. BUFR or CSV-input)
+Station metadata can be pulled from Oscar/Surface with a REST API is available here: 
+https://oscar.wmo.int/surface/rest/api/search/station?territoryName=NLD 
+(This call will get you all the dutch observation stations)
+Documentation on how to use the OSCAR REST API available here: https://oscar.wmo.int/surface/#/ -> API: How can I extract lists of stations from OSCAR/Surface?
 ### 4.2. API Specifications
 * OGC EDR
 * OGC API Features
