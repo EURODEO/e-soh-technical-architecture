@@ -54,14 +54,40 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ## 3. Detailed Design
 ### 3.1. Component Design
+
 ### 3.2. Data Models
+
+A dataset is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata).
+
+#### 3.2.1 Metadata specification
+
+The following principles shall be followed:
+
+* A minimum set of (required and recommended) metadata must follow the data, i.e., as part of the data files output from E-SOH APIs and the event queue.
+* Input datasets must be enriched by required metadata upon ingestion, if it is not already provided.
+* It must be possible to translate from the agreed data-following standards to other standards, e.g., DCAT, ISO19115, etc.
+* All datasets must have defined use constraints provided by a standard license or release statement ("no rights reserved")
+* All datasets must have defined access constraints (in particular for fully or partly restricted datasets)
+
+The [Attribute Convention for Data Discovery](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3) describes attributes recommended for describing a NetCDF dataset to data discovery systems. It should be possible to use the ACDD vocabulary in, e.g., GeoJSON or CoverageJSON as well.
+
+The [CF metadata conventions](https://cfconventions.org/) define (use) metadata that provide a definitive description of what the data in each variable of a NetCDF file represents, as well as its spatial and temporal properties. This enables users to understand and reuse the data. The CF metadata conventions were created for the NetCDF format, but there are ongoing efforts to also use it for the definition of a standard JSON format for the exchange of weather and climate data; [CF-JSON](http://cf-json.org/).
+
+Recommendations:
+* The ACDD vocabulary should be used to make datasets Findable, with extensions where necessary to promote Interoperability with existing standards (e.g., DCAT, ISO19115 and profiles of these)
+* The CF conventions should be followed to enable Reuse
+* Use a standard license, e.g., [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/), provided by the URL in the form similar to "<URL> (<Identifier>)" using elements from the [SPDX license list](https://spdx.org/licenses/).
+
+
+#### 3.2.2 Transfer and storage formats
+
 * BUFR
 * CoverageJSON
 * CSV
 * GeoJSON
 * NetCDF
-* mqtt message payload
-* metadata specification
+* MQTT message payload
+
 ## 4. Integration and APIs
 ### 4.1. External Integrations
 * GTS
