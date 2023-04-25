@@ -64,11 +64,11 @@ The TDD is intended to be a living document, updated as necessary throughout the
 * metadata specification
 ## 4. Integration and APIs
 ### 4.1. External Integrations
-* GTS
+#### GTS
 
 Data going in GTS network needs WMO-title “TTAAii”, which tells: the type of the data and where did it come from. WMO-title should be given in the beginning of the data. List of the TTAA  can be found in: WMO-No. 386 Document (Manual on the Global Telecommunication System, PART II, chapter 5, Attachment II-5 Data Designators T1T2A1A2ii in abbreviated headings). “ii”-part is used to separate same kind of data from another.
 
-WIGOS identifiers can be included in some BUFT templates:
+* WIGOS identifiers can be included in some BUFR templates:
 * 3 07 024: Ground-based GNSS data – slant total delay
 * 3 07 092: BUFR template for surface observations from n-minute period
 * 3 07 103: Snow observation, snow density, snow water equivalent
@@ -81,7 +81,8 @@ WIGOS identifiers can be included in some BUFT templates:
 
 If we are using WIS2, which has a gateway to GTS, do we need to concern about GTS anymore?
 
-* OSCAR
+#### OSCAR
+
 ### 4.2. API Specifications
 * OGC EDR
 * OGC API Features
