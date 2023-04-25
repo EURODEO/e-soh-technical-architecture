@@ -89,7 +89,11 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 The performance requirements for the software system are crucial to ensure that it meets the expectations of end-users and can handle the anticipated workload efficiently. This section outlines the key performance metrics, targets, and goals that the system must achieve.
 
-Response Time: The time taken by the system to process a request and return a response should be within acceptable limits to provide a smooth user experience. For example, the response time for user-facing operations should be under 200 milliseconds for 95% of requests and under 500 milliseconds for 99% of requests.
+DWD Comments:
+
+- Origin of the following numbers unclear?
+
+Response Time: The time taken by the system to process a request and return a response should be within acceptable limits to provide a smooth user experience. For example, the response time for user-facing operations (time between search request, via the Search API and search result) should be under 200 milliseconds for 95% of requests and under 500 milliseconds for 99% of requests.
 
 Throughput: The system should be able to handle a specified number of requests per second or transactions per minute without degrading performance. This metric depends on the expected usage patterns and peak loads. For example, the system should support a throughput of at least 1000 requests per second during peak times.
 
@@ -99,23 +103,33 @@ Latency: The system should minimize the time taken for data to travel between co
 
 Concurrency: The system should be able to handle multiple simultaneous user sessions and requests without any loss of performance or functionality. For example, the system should support at least 500 concurrent user sessions without any degradation in response time or throughput.
 
-Scalability: The system should be designed to scale both horizontally and vertically to accommodate increased user loads or additional functionality. Scalability requirements may include adding new servers, increasing CPU or memory resources, or deploying additional instances of the system.
+Scalability: The system should be designed to scale both horizontally and vertically to accommodate increased user loads or additional functionality. Scalability requirements may include adding new servers, increasing CPU or memory resources, or deploying additional instances of the system. Depending on the cloud this may need to be done manually, especially in the EWC.
 
-Reliability: The system should maintain consistent performance levels under normal and adverse conditions, including hardware failures, network outages, or increased traffic. For example, the system should have a target uptime of 99.9% and a mean time between failures (MTBF) of at least 10,000 hours.
+Reliability: The system should maintain consistent performance levels under normal and adverse conditions, including hardware failures, network outages, or increased traffic. For example, the system should have a target uptime of 99% and a mean time between failures (MTBF) of at least 10,000 hours.
 
-By defining these performance requirements upfront, the development team can make informed design decisions and implement appropriate optimizations to ensure that the software system meets or exceeds the specified performance targets. Regular performance testing, monitoring, and profiling should be conducted throughout the development process to validate that the performance requirements are being met and to identify any potential issues or bottlenecks.
-
+By defining these performance requirements upfront, the development team can make informed design decisions and implement appropriate optimizations to ensure that the software system meets or exceeds the specified performance targets.
 
 ### 6.2. Performance Testing and Profiling
+
+Regular performance testing and profiling should be conducted throughout the development process to validate that the performance requirements are being met and to identify any potential issues or bottlenecks.
+
+These tests should include but are not limited to:
+
+* Profiling of response and round-trip time of requests and between software procedures inside the stack
+* Profiling of network and system resources and in the case of a high number of simultaneous user requests
+* Testing the performance in relation to scaling horizontally and vertically
+* Behavior in error- and worst-cases like hardware failures, network outages, or increased traffic
+
 ### 6.3. Caching Strategies
 ### 6.4. Load Balancing and Failover
 ### 6.5. Vertical and Horizontal Scaling
 
 ## 7. Deployment and Operations
 
-All environments run in EWC.
+All environments run in the EWC.
 
 ### 7.1. Deployment Environments
+
 This section provides an overview of the deployment strategy and environments that are employed to ensure the smooth operation and management of the system. The purpose of outlining these is to create a clear understanding of how the system components are deployed, configured, and maintained across various stages of development and production.
 
 **Development Environment:**
@@ -148,19 +162,61 @@ Deployment automation is the process of automatically deploying application comp
 Monitoring and Feedback:
 Continuous monitoring and feedback are essential to maintain the health of the system and identify any issues that may arise during the deployment or operation of the application components. Monitoring tools should be integrated into the CI/CD pipeline to track system performance, resource utilization, and application logs. Feedback from monitoring tools should be used to inform future development and deployment decisions, ensuring that the system continues to meet its non-functional requirements and provide a seamless user experience.
 
-By implementing a robust CI/CD pipeline, the deployment architecture enables rapid delivery of new features and improvements, while ensuring the overall stability, security, and performance of the system.
+By implementing a robust CI/CD pipeline, the deployment architecture enables rapid delivery of new features and improvements, while ensuring the overall stability, security, and performance of the system. We will be using Github as a VCS and CI/CD platform, it provides a functionality for all parts of the deployment process.
 
 ### 7.3. Monitoring and Alerting
+
+All systems and services should be monitored to identify potential issues and service downtime, validate the set performance thresholds and alert on any abnormal activities or exceeded thresholds.
+
+The Morpheus Dashboard in the EWC can be used to monitor the created instances and VMs. It is possible to check for a machine status, if it is running and for log output which is configurable depending on the operating system.
+
+The most important aspect is the monitoring onboard of the system. A monitoring program will be used to check continuously all relevant system parameters and send those information's to the monitoring server. The following parameters should be monitored:
+
+* Resource Utilization (CPU, memory, disk space, network usage)
+* Service availability, check if...
+  * the processes are running
+  * interfaces usable/reachable
+  * requests and throughput are in a normal range
+* Private network connections between VMs are established
+
+To detect security attacks and possible breaches it is also important to check for changes in the file system and monitor SSH login attempts. Examples for these applications are intrusion detection systems and log monitoring tools like IDA and Fail2Ban.
+
+Monitoring request times and functionality from an external point of view, from outside of the EWC network, could be beneficial to get a good perspective of the end user experience.
+
+Based on all figures mentioned above, important metrics can be derived and calculated. The sum of all system functionalities build up the important _the mean time to recovery_ (MTTR) and _mean time between failure_ (MTBF) values, as well as the total uptime of the whole E-SOH system.
+
 ### 7.4. Backup and Recovery
+
+Backup and recovery system should be implemented and tested for full functionality, either via the EWC backup functionality or some open source backup tool.
+
+DWD: A decision is to be made, which software is suitable for this case. TDB: Where to store the backup data with geo redundancy?
+
 ### 7.5. Disaster Recovery and Business Continuity
 
+In the event of a worst case situation, if only the source code still remains, there should be a disaster recovery procedure. This procedure includes plans for a recreation of the whole system starting from the bare source code of the E-SOH project and contains compilation of the project artifacts and creating a new and clean virtual machine setup at the EWC. To guarantee business continuity a emergency procedure plan is needed with a list of personnel who are responsible for failure recovery.
+
+To mitigate a disaster or total loss of data a geo and service redundancy should be established at least for the project source code (e.g. automated mirroring/pulling of the public repository). Backup systems may also be created inside the EUMETSAT cloud to create further redundancy.
+
 ## 8. Maintenance and Support
+
 ### 8.1. Code Management and Versioning
+
+The Version Control System, in this case Github, will provide code management and versioning of everything E-SOH related.
+
 ### 8.2. Bug Tracking and Issue Resolution
+
+The Version Control System, in this case Github, will also provide bug tracking and issue resolution of everything E-SOH related.
+
 ### 8.3. Feature Enhancements and Roadmap
+
+The Version Control System, in this case Github, will also provide feature and enhancement tracking and milestones of everything E-SOH related.
+
 ### 8.4. Documentation and Training
 ### 8.5. Support Channels and SLAs
-* 99% NBD support
+
+Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be solved by the next business day. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
+
+DWD: Ticket software TBD, ticket solved or replied to on NBD?
 
 ## 9. Conclusion
 ### 9.1. Key Takeaways
