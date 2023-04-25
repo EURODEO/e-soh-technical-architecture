@@ -55,10 +55,16 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ## 3. Detailed Design
 ### 3.1. Component Design
 ### 3.2. Data Models
-
+* BUFR
+* CoverageJSON
+* CSV
+* GeoJSON
+* NetCDF
 ## 4. Integration and APIs
 ### 4.1. External Integrations
+* GTS
 ### 4.2. API Specifications
+* EDR
 ### 4.3. API Authentication and Authorization
 ### 4.4. API Rate Limiting and Throttling
 
