@@ -214,9 +214,9 @@ The Version Control System, in this case Github, will also provide feature and e
 ### 8.4. Documentation and Training
 ### 8.5. Support Channels and SLAs
 
-Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be solved by the next business day. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
+Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be worked on by the next business day and should be solved by best effort. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
 
-DWD: Ticket software TBD, ticket solved or replied to on NBD?
+DWD: Ticket software TBD
 
 ## 9. Conclusion
 ### 9.1. Key Takeaways
