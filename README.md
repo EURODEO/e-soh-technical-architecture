@@ -60,13 +60,21 @@ The TDD is intended to be a living document, updated as necessary throughout the
 * CSV
 * GeoJSON
 * NetCDF
+* mqtt message payload
+* metadata specification
 ## 4. Integration and APIs
 ### 4.1. External Integrations
 * GTS
+* OSCAR
 ### 4.2. API Specifications
-* EDR
+* OGC EDR
+* OGC API Features
+* OGC API Records
+
 ### 4.3. API Authentication and Authorization
+* wait for FEMDI
 ### 4.4. API Rate Limiting and Throttling
+
 
 
 ## 5.Security and Privacy
