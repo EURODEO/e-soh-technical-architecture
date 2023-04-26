@@ -67,9 +67,9 @@ The container diagram below shows all the main components of the E-SOH system.
 
 ![C4 container diagram](https://github.com/EURODEO/e-soh-c4/blob/main/03-container-diagram/c4-container-diagram.png)
 
-On the right is the Central E-SOH API Endpoint. In the middle an overview of the components of an E-SOH local instance. Each local E-SOH instance consists of 7 components:
+On the right is the Central E-SOH API Endpoint. In the middle are all the components of an E-SOH local instance. Each local E-SOH instance consists of 7 components:
 1. Ingestion. This component will take care of the ingestion of observation data both via push and pull mechanisms.  
-2. Notification service. This component provide notifications to the external systems as soon as new data is ingested, so the data can be pulled by the external systems.
+2. Notification service. This component provides notifications to the external systems as soon as new data is ingested, so the data can be pulled by the external systems.
 3. Output encoder. This component is called upon by the Access API if a user wants a specific format like BUFR.
 4. Data and metadata store. The main storage component for data and metadata. It has the memory of a goldfish: it will hold the data only for 24 hours. 
 5. Input decoder. This component is called upon by the Ingestion component for decoding BUFR and csv input. It will use OSCAR to retrieve missing station metadata.
