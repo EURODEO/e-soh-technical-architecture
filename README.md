@@ -55,11 +55,22 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ## 3. Detailed Design
 ### 3.1. Component Design
 ### 3.2. Data Models
+
+*NetCDF and CF-NetCDF*
+
+[NetCDF] is a binary, platform-independent, domain-neutral data format for multidimensional data. Essentially, a NetCDF file is a collection of multidimensional arrays, plus metadata provided as key-value pairs. Metadata conventions are required to specialise NetCDF for particular communities. The Climate and Forecast conventions are the pre-eminent conventions for geospatial NetCDF data. NetCDF files that conform to these conventions are known as "CF-NetCDF files". Note that there are different varieties of the NetCDF format and data model. Here we are concerned with the "classic" NetCDF data model.
+
+*CoverageJSON*
+The overall concepts of CoverageJSON are close to those of the [ISO19123] standard and the OGC standard Coverage Implementation Schema ([OGC-CIS]), which specialises ISO19123.
+https://www.iso.org/standard/40121.html
+
+The overall structure of CoverageJSON is quite close to that of [NetCDF], consisting essentially of a set of orthogonal domain axes that can be combined in different ways. One major difference is that in CoverageJSON, there is an explicit Domain object, whereas in NetCDF the domain is specified implicitly by linking data variables with coordinate variables. One consequence of this is that NetCDF files can contain several domains and hence several Coverages. A NetCDF file could therefore be converted to a single Coverage or a Coverage Collection in CoverageJSON.
+
+
+
 * BUFR
-* CoverageJSON
 * CSV
 * GeoJSON
-* NetCDF
 * mqtt message payload
 * metadata specification
 ## 4. Integration and APIs
