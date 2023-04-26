@@ -39,9 +39,10 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ## 2. System Overview
 ### 2.1. Architecture
 #### 2.1.1. Context Diagram
-
+In this diagram the context of the E-SOH system is depicted.
 ![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
-
+On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
+On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
 #### 2.1.2. Landscape Diagram
 
 ![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
@@ -58,6 +59,16 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ### 3.2. Data Models
 
 A dataset is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata). In the E-SOH context, we consider the (Near-) Real-Time (NRT) data as extracts of externally available datasets like, e.g., climate timeseries. We refer to these datasets as "parent" datasets, whereas the extracts are referred to as "child" datasets.
+
+*NetCDF and CF-NetCDF*
+
+[NetCDF] is a binary, platform-independent, domain-neutral data format for multidimensional data. Essentially, a NetCDF file is a collection of multidimensional arrays, plus metadata provided as key-value pairs. Metadata conventions are required to specialise NetCDF for particular communities. The Climate and Forecast conventions are the pre-eminent conventions for geospatial NetCDF data. NetCDF files that conform to these conventions are known as "CF-NetCDF files". Note that there are different varieties of the NetCDF format and data model. Here we are concerned with the "classic" NetCDF data model.
+
+*CoverageJSON*
+The overall concepts of CoverageJSON are close to those of the [ISO19123] standard and the OGC standard Coverage Implementation Schema ([OGC-CIS]), which specialises ISO19123.
+https://www.iso.org/standard/40121.html
+
+The overall structure of CoverageJSON is quite close to that of [NetCDF], consisting essentially of a set of orthogonal domain axes that can be combined in different ways. One major difference is that in CoverageJSON, there is an explicit Domain object, whereas in NetCDF the domain is specified implicitly by linking data variables with coordinate variables. One consequence of this is that NetCDF files can contain several domains and hence several Coverages. A NetCDF file could therefore be converted to a single Coverage or a Coverage Collection in CoverageJSON.
 
 #### 3.2.1 Metadata specification
 
@@ -79,29 +90,66 @@ Recommendations:
 * The CF conventions should be followed to enable Reuse
 * Use a standard license, e.g., [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/), provided by the URL in the form similar to "<URL> (<Identifier>)" using elements from the [SPDX license list](https://spdx.org/licenses/).
 
-#### 3.2.2 Transfer and storage formats
+
 
 * BUFR
-* CoverageJSON
 * CSV
 * GeoJSON
-* NetCDF
 * MQTT message payload
 
 ## 4. Integration and APIs
 ### 4.1. External Integrations
-* GTS
-* OSCAR
+#### GTS
+
+Data going in GTS network needs WMO-title “TTAAii”, which tells: the type of the data and where did it come from. WMO-title should be given in the beginning of the data. List of the TTAA  can be found in: WMO-No. 386 Document (Manual on the Global Telecommunication System, PART II, chapter 5, Attachment II-5 Data Designators T1T2A1A2ii in abbreviated headings). “ii”-part is used to separate same kind of data from another.
+
+WIGOS identifiers can be included in some BUFR templates:
+* 3 07 024: Ground-based GNSS data – slant total delay
+* 3 07 092: BUFR template for surface observations from n-minute period
+* 3 07 103: Snow observation, snow density, snow water equivalent
+* 3 08 018: Sequence for reporting of basic ship AWS observations
+* 3 09 056: Sequence for representation of radiosonde descent data
+* 3 09 057: Sequence for representation of TEMP, TEMP SHIP and TEMP MOBIL observation type data with higher precision of pressure and geopotential height
+* 3 11 012: BUFR template for aircraft ascent/descent profile with latitude and longitude given for each level
+* 3 15 011: Met-ocean observations from autonomous surface vehicles
+* 3 15 013: Sequence for reporting trajectory profile data from marine animal tags
+
+If we are using WIS2, which has a gateway to GTS, do we need to concern about GTS anymore?
+
+#### OSCAR
+
 ### 4.2. API Specifications
-* OGC EDR
-* OGC API Features
-* OGC API Records
+  **OGC API - Environmental Data Retrieval**
+  WIS 2.0 recommendation is to use OpenAPI 3 compatible api, more specifically OGC EDR if possible. Design choise for E-SOH was to use OGC EDR API to implement api based access to data.
+
+  Environmental Data Retrieval API (EDR) is standard by Open Gespactial Consortium
+
+  The Environmental Data Retrieval (EDR) Application Programming Interface (API) provides a family of lightweight query interfaces to access spatio-temporal data resources by requesting data at a Position, within an Area, along a Trajectory or through a Corridor. A spatio-temporal data resource is a collection of spatio-temporal data that can be sampled using the EDR query pattern geometries. These patterns are described in the section describing the Core Requirements Class.
+
+  The goals of the EDR API are to make it easier to access a wide range of data through a uniform, well-defined simple Web interface, and to achieve data reduction to just the data needed by the user or client while hiding much of the data storage complexity. A major use case for the EDR API is to retrieve small subsets from large collections of environmental data, such as weather observations. The important aspect is that the data can be unambiguously specified by spatio-temporal coordinates.
+
+  Full description of EDR API can be found on OGC website https://docs.ogc.org/is/19-086r5/19-086r5.html
+
+  **OGC API Records**
+  For metadata and catalogue WMO WIS 2.0 is using OGC API - Records (draft) standard. E-SOH will use this API to provide relevant metadata to users and to WMO WIS 2.0.
+
+  A Record makes a resource discoverable by providing summary information (metadata) about the resource. In this context, resources are things that would be useful to a user or developer, such as features.
+
+  OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:
+  * a collection of static files,
+  * a collection of records accessed via an API.
+
+  A catalogue can be deployed as a static collection of records stored in web-accessible files and typically co-located with the resources each record is describing. Such a deployment is amenable to browsing using a web browser or being crawled by a search engine crawler.
+
+  A catalogue can also be deployed as an API with well known endpoints for retrieving information about the catalogue, retrieving records from the catalogue and searching the catalogue for sub-sets of records that satisfy user-defined search criteria.
+
+  Full OGC API Records specification can be found on OGC webiste https://ogcapi.ogc.org/records/
 
 ### 4.3. API Authentication and Authorization
-* wait for FEMDI
+  
+  For API Authentication and Authorization E-SOH will be relying on FEMDI implementation. FEMDI will implement these techniques on later iterations.
+
 ### 4.4. API Rate Limiting and Throttling
-
-
 
 ## 5.Security and Privacy
 ### 5.1. Data Protection and Encryption
@@ -238,6 +286,7 @@ The Version Control System, in this case Github, will also provide bug tracking 
 The Version Control System, in this case Github, will also provide feature and enhancement tracking and milestones of everything E-SOH related.
 
 ### 8.4. Documentation and Training
+Initially the version control system, in this case Github, will also contain all E-SOH documentation. As soon as the system is working in a beta version user documentation and training material will be developped. This material will be made available on the platform which will be chosen in RODEO Work Package 7.
 ### 8.5. Support Channels and SLAs
 
 Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be solved by the next business day. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
