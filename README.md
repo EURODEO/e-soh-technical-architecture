@@ -16,14 +16,32 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ### 1.2. Definitions, Acronyms, and Abbreviations
 
-| Abbreviation             | Meaning                                                               |
-|--------------------------|-----------------------------------------------------------------------|
-| API                      | Application Programming Interface                                     |
-| AWS                      | Automatic Weather Station                                             |
-| EDR                      | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/) |
-| E-SOH                    | EUMETNET Supplementary Observation dataHub                            |
-| EWC                      | [European Weather Cloud](https://www.europeanweather.cloud)           |
-| FEMDI                    | Federated European Meteorological Data Infrastructure                 |
+| Abbreviation  | Meaning                                                                          |
+|---------------|----------------------------------------------------------------------------------|
+| API           | Application Programming Interface                                                |
+| AWS           | Automatic Weather Station                                                        |
+| BUFR          | Binary Universal Form for the Representation of meteorological data              |
+| CSV           | [Comma Separates Values - tabular data model](https://www.w3.org/TR/tabular-data-model/) |
+| CoverageJSON  | [OGC CoverageJSON Community Standard for publishing spatiotemporal data to the Web](https://opengeospatial.github.io/ogcna-auto-review/21-069.html)|
+| EDR           | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/)            |
+| E-SOH         | EUMETNET Supplementary Observation dataHub                                       |
+| EUMETNET      | [A Network of 31 European NMHSs](https://eumetnet.eu)|
+| EUMETSAT      | [European Organisation for the Exploitation of Meteorological Satellites ](https://eumetsat.int) |
+| EWC           | [European Weather Cloud](https://www.europeanweather.cloud)                      |
+| FEMDI         | Federated European Meteorological Data Infrastructure                            |
+| GTS           | [WMO Global Telecomminications System](https://public.wmo.int/en/programmes/global-telecommunication-system) |
+| JSON          | JavaScript Object Notation [ISO/IEC 21778:2017](https://www.iso.org/obp/ui/#iso:std:iso-iec:21778:ed-1:v1:en) |
+| MQTT          | [lightweight publish/subscribe messaging transport protocol](https://en.wikipedia.org/wiki/MQTT)                   |
+| MTBF          | mean time between failures is the average time between repairable failures       |
+| MTTR          | mean time to repair is the average time it takes to repair a system              |
+| NMHS          | National Meteorological & Hydrological Services                                  |
+| OGC           | [Open Geospatial Consortium](https://ogc.org)                                    |
+| OSCAR         | [Observing Systems Capability Analysis and Review tool](https://community.wmo.int/en/activity-areas/WIGOS/implementation-WIGOS/OSCAR)|
+| SLA           | [Service-level agreement](https://en.wikipedia.org/wiki/Service-level_agreement) |
+| VCS           | [Version Control System](https://en.wikipedia.org/wiki/Version_control)          |
+| WIGOS         | [WMO Integrated Global Observing System](https://community.wmo.int/en/activity-areas/WIGOS)                 |
+| WIS           | [WMO Information System](https://community.wmo.int/en/activity-areas/wis)        |
+| WMO           | [World Meteorological Organization](https://wmo.int)                             |
 
 ### 1.3. References
 
