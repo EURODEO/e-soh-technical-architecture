@@ -301,6 +301,8 @@ In the event of a worst case situation, if only the source code still remains, t
 
 To mitigate a disaster or total loss of data a geo and service redundancy should be established at least for the project source code (e.g. automated mirroring/pulling of the public repository). Backup systems may also be created inside the EUMETSAT cloud to create further redundancy.
 
+To mitigate temporal outages of some instances, a orchestration software like Kubernetes should be used. Such a software can automatically restart containers or provide new instantiated ones.
+
 ## 8. Maintenance and Support
 
 ### 8.1. Code Management and Versioning
@@ -319,9 +321,9 @@ The Version Control System, in this case Github, will also provide feature and e
 Initially the version control system, in this case Github, will also contain all E-SOH documentation. As soon as the system is working in a beta version user documentation and training material will be developped. This material will be made available on the platform which will be chosen in RODEO Work Package 7.
 ### 8.5. Support Channels and SLAs
 
-Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be solved by the next business day. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
+Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be worked on by the next business day and should be solved by best effort. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
 
-DWD: Ticket software TBD, ticket solved or replied to on NBD?
+DWD: Ticket software TBD
 
 ## 9. Conclusion
 ### 9.1. Key Takeaways
