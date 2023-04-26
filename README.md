@@ -39,9 +39,10 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ## 2. System Overview
 ### 2.1. Architecture
 #### 2.1.1. Context Diagram
-
+In this diagram the context of the E-SOH system is depicted.
 ![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
-
+On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
+On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
 #### 2.1.2. Landscape Diagram
 
 ![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
