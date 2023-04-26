@@ -39,9 +39,10 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ## 2. System Overview
 ### 2.1. Architecture
 #### 2.1.1. Context Diagram
-
+In this diagram the context of the E-SOH system is depicted.
 ![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
-
+On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
+On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
 #### 2.1.2. Landscape Diagram
 
 ![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
@@ -54,14 +55,48 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ## 3. Detailed Design
 ### 3.1. Component Design
+
 ### 3.2. Data Models
+
+A dataset is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata). In the E-SOH context, we consider the (Near-) Real-Time (NRT) data as extracts of externally available datasets like, e.g., climate timeseries. We refer to these datasets as "parent" datasets, whereas the extracts are referred to as "child" datasets.
+
+*NetCDF and CF-NetCDF*
+
+[NetCDF] is a binary, platform-independent, domain-neutral data format for multidimensional data. Essentially, a NetCDF file is a collection of multidimensional arrays, plus metadata provided as key-value pairs. Metadata conventions are required to specialise NetCDF for particular communities. The Climate and Forecast conventions are the pre-eminent conventions for geospatial NetCDF data. NetCDF files that conform to these conventions are known as "CF-NetCDF files". Note that there are different varieties of the NetCDF format and data model. Here we are concerned with the "classic" NetCDF data model.
+
+*CoverageJSON*
+The overall concepts of CoverageJSON are close to those of the [ISO19123] standard and the OGC standard Coverage Implementation Schema ([OGC-CIS]), which specialises ISO19123.
+https://www.iso.org/standard/40121.html
+
+The overall structure of CoverageJSON is quite close to that of [NetCDF], consisting essentially of a set of orthogonal domain axes that can be combined in different ways. One major difference is that in CoverageJSON, there is an explicit Domain object, whereas in NetCDF the domain is specified implicitly by linking data variables with coordinate variables. One consequence of this is that NetCDF files can contain several domains and hence several Coverages. A NetCDF file could therefore be converted to a single Coverage or a Coverage Collection in CoverageJSON.
+
+#### 3.2.1 Metadata specification
+
+The following principles shall be followed:
+
+* A minimum set of (required and recommended) metadata must follow the data, i.e., as part of the data files output from E-SOH APIs and the event queue.
+* Input datasets must be enriched by required metadata upon ingestion, if it is not already provided.
+* In order to obtain traceability, a child dataset must reference its parent dataset by the parent's metadata identification. The parent dataset's identification is expected to be actionable, but the NRT dataset identification is not.
+* To support interoperability, it must be possible to translate from the agreed data-following standards to other standards (e.g., DCAT, ISO19115, etc.).
+* All datasets must have defined use constraints provided by a standard license or release statement ("no rights reserved").
+* All datasets must have defined access constraints (in particular for fully or partly restricted datasets). The optional access constraints must be defined by a controlled vocabulary.
+
+The [Attribute Convention for Data Discovery](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3) describes attributes recommended for describing a NetCDF dataset to data discovery systems. It should be possible to use the ACDD vocabulary in, e.g., GeoJSON or CoverageJSON as well.
+
+The [CF metadata conventions](https://cfconventions.org/) define (use) metadata that provide a definitive description of what the data in each variable of a NetCDF file represents, as well as its spatial and temporal properties. This enables users to understand and reuse the data. The CF metadata conventions were created for the NetCDF format, but there are ongoing efforts to also use it for the definition of a standard JSON format for the exchange of weather and climate data; [CF-JSON](http://cf-json.org/).
+
+Recommendations:
+* The ACDD vocabulary should be used to make datasets Findable, with extensions where necessary to promote Interoperability with existing standards (e.g., DCAT, ISO19115 and profiles of these)
+* The CF conventions should be followed to enable Reuse
+* Use a standard license, e.g., [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/), provided by the URL in the form similar to "<URL> (<Identifier>)" using elements from the [SPDX license list](https://spdx.org/licenses/).
+
+
+
 * BUFR
-* CoverageJSON
 * CSV
 * GeoJSON
-* NetCDF
-* mqtt message payload
-* metadata specification
+* MQTT message payload
+
 ## 4. Integration and APIs
 ### 4.1. External Integrations
 #### GTS
@@ -84,12 +119,36 @@ If we are using WIS2, which has a gateway to GTS, do we need to concern about GT
 #### OSCAR
 
 ### 4.2. API Specifications
-* OGC EDR
-* OGC API Features
-* OGC API Records
+  **OGC API - Environmental Data Retrieval**
+  WIS 2.0 recommendation is to use OpenAPI 3 compatible api, more specifically OGC EDR if possible. Design choise for E-SOH was to use OGC EDR API to implement api based access to data.
+
+  Environmental Data Retrieval API (EDR) is standard by Open Gespactial Consortium
+
+  The Environmental Data Retrieval (EDR) Application Programming Interface (API) provides a family of lightweight query interfaces to access spatio-temporal data resources by requesting data at a Position, within an Area, along a Trajectory or through a Corridor. A spatio-temporal data resource is a collection of spatio-temporal data that can be sampled using the EDR query pattern geometries. These patterns are described in the section describing the Core Requirements Class.
+
+  The goals of the EDR API are to make it easier to access a wide range of data through a uniform, well-defined simple Web interface, and to achieve data reduction to just the data needed by the user or client while hiding much of the data storage complexity. A major use case for the EDR API is to retrieve small subsets from large collections of environmental data, such as weather observations. The important aspect is that the data can be unambiguously specified by spatio-temporal coordinates.
+
+  Full description of EDR API can be found on OGC website https://docs.ogc.org/is/19-086r5/19-086r5.html
+
+  **OGC API Records**
+  For metadata and catalogue WMO WIS 2.0 is using OGC API - Records (draft) standard. E-SOH will use this API to provide relevant metadata to users and to WMO WIS 2.0.
+
+  A Record makes a resource discoverable by providing summary information (metadata) about the resource. In this context, resources are things that would be useful to a user or developer, such as features.
+
+  OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:
+  * a collection of static files,
+  * a collection of records accessed via an API.
+
+  A catalogue can be deployed as a static collection of records stored in web-accessible files and typically co-located with the resources each record is describing. Such a deployment is amenable to browsing using a web browser or being crawled by a search engine crawler.
+
+  A catalogue can also be deployed as an API with well known endpoints for retrieving information about the catalogue, retrieving records from the catalogue and searching the catalogue for sub-sets of records that satisfy user-defined search criteria.
+
+  Full OGC API Records specification can be found on OGC webiste https://ogcapi.ogc.org/records/
 
 ### 4.3. API Authentication and Authorization
-* wait for FEMDI
+  
+  For API Authentication and Authorization E-SOH will be relying on FEMDI implementation. FEMDI will implement these techniques on later iterations.
+
 ### 4.4. API Rate Limiting and Throttling
 
 The OGC API Features and OGC API EDR standards support specifying limits on number of returned responses on both client and server side. Server side limiting will support this throttling functionality and could be one option to be used at the API level. Clients can also ask to limit the response and in this case the server should limit the number of responses and enable paging functionality. If responses exceed the limit the client is given a “next” link to get more responses.
