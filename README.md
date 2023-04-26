@@ -16,14 +16,32 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ### 1.2. Definitions, Acronyms, and Abbreviations
 
-| Abbreviation             | Meaning                                                               |
-|--------------------------|-----------------------------------------------------------------------|
-| API                      | Application Programming Interface                                     |
-| AWS                      | Automatic Weather Station                                             |
-| EDR                      | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/) |
-| E-SOH                    | EUMETNET Supplementary Observation dataHub                            |
-| EWC                      | [European Weather Cloud](https://www.europeanweather.cloud)           |
-| FEMDI                    | Federated European Meteorological Data Infrastructure                 |
+| Abbreviation  | Meaning                                                                          |
+|---------------|----------------------------------------------------------------------------------|
+| API           | Application Programming Interface                                                |
+| AWS           | Automatic Weather Station                                                        |
+| BUFR          | Binary Universal Form for the Representation of meteorological data              |
+| CSV           | [Comma Separates Values - tabular data model](https://www.w3.org/TR/tabular-data-model/) |
+| CoverageJSON  | [OGC CoverageJSON Community Standard for publishing spatiotemporal data to the Web](https://opengeospatial.github.io/ogcna-auto-review/21-069.html)|
+| EDR           | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/)            |
+| E-SOH         | EUMETNET Supplementary Observation dataHub                                       |
+| EUMETNET      | [A Network of 31 European NMHSs](https://eumetnet.eu)|
+| EUMETSAT      | [European Organisation for the Exploitation of Meteorological Satellites ](https://eumetsat.int) |
+| EWC           | [European Weather Cloud](https://www.europeanweather.cloud)                      |
+| FEMDI         | Federated European Meteorological Data Infrastructure                            |
+| GTS           | [WMO Global Telecomminications System](https://public.wmo.int/en/programmes/global-telecommunication-system) |
+| JSON          | JavaScript Object Notation [ISO/IEC 21778:2017](https://www.iso.org/obp/ui/#iso:std:iso-iec:21778:ed-1:v1:en) |
+| MQTT          | [lightweight publish/subscribe messaging transport protocol](https://en.wikipedia.org/wiki/MQTT)                   |
+| MTBF          | mean time between failures is the average time between repairable failures       |
+| MTTR          | mean time to repair is the average time it takes to repair a system              |
+| NMHS          | National Meteorological & Hydrological Services                                  |
+| OGC           | [Open Geospatial Consortium](https://ogc.org)                                    |
+| OSCAR         | [Observing Systems Capability Analysis and Review tool](https://community.wmo.int/en/activity-areas/WIGOS/implementation-WIGOS/OSCAR)|
+| SLA           | [Service-level agreement](https://en.wikipedia.org/wiki/Service-level_agreement) |
+| VCS           | [Version Control System](https://en.wikipedia.org/wiki/Version_control)          |
+| WIGOS         | [WMO Integrated Global Observing System](https://community.wmo.int/en/activity-areas/WIGOS)                 |
+| WIS           | [WMO Information System](https://community.wmo.int/en/activity-areas/wis)        |
+| WMO           | [World Meteorological Organization](https://wmo.int)                             |
 
 ### 1.3. References
 
@@ -40,16 +58,42 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ### 2.1. Architecture
 #### 2.1.1. Context Diagram
 In this diagram the context of the E-SOH system is depicted.
+
 ![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
+
 On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
 On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
 #### 2.1.2. Landscape Diagram
+The diagram below depicts the landscape of the E-SOH system.
 
 ![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
 
+On top is the data consumer who is interested in the real-time weather observations. The data consumer can get the data in two ways:
+1. Via the WIS2 Shared services. The WIS2.0 shared services will replace the GTS. In the future the user will be able to retrieve observation data directly from the E-SOH instances (if the local instance allow this). The WIS2.0 shared services will also provide BUFR files.
+2. Via the FEMDI system. The FEMDI system will be build in RODEO Work package It will contain the Data Catalogue and a central API Gateway which will forward the API queries from the user to the Central API from the federated E-SOH system.
+
+The E-SOH federated system consists of a central E-SOH API endpoint, and one local E-SOH instance. Both will be run centrally from the European Weather Cloud. The architecture takes into account local E-SOH implementations. In the diagram only one local E-SOH implementation is depicted, but there can be more.
+The Central E-SOH API endpoint connects the local E-SOH instance within the federated system and all the local E-SOH implementations.
+
+All local E-SOH instances get data from Observation collection systems and metadata from Oscar. This also goes for the local E-SOH implementation on the right in the diagram, but the arrows are not drawn to keep the picture as simple as possible.
+
+
+
 #### 2.1.3. Container Diagram
 
+The container diagram below shows all the main components of the E-SOH system.  
+
 ![C4 container diagram](https://github.com/EURODEO/e-soh-c4/blob/main/03-container-diagram/c4-container-diagram.png)
+
+On the right is the Central E-SOH API Endpoint. In the middle are all the components of an E-SOH local instance. Each local E-SOH instance consists of 7 components:
+1. Ingestion. This component will take care of the ingestion of observation data both via push and pull mechanisms.  
+2. Notification service. This component provides notifications to the external systems as soon as new data is ingested, so the data can be pulled by the external systems.
+3. Output encoder. This component is called upon by the Access API if a user wants a specific format like BUFR.
+4. Data and metadata store. The main storage component for data and metadata. It has the memory of a goldfish: it will hold the data only for 24 hours. 
+5. Input decoder. This component is called upon by the Ingestion component for decoding BUFR and csv input. It will use OSCAR to retrieve missing station metadata.
+6. Search and access API's. The endpoint for both the Central E-SOH API endpoint and external WIS2.0 services.
+7. Logging, monitoring, alerting and reporting. This component will do the logging, monitoring and alerting for all the components within the E-SOH local instance. It will also produce reports with metrics based of the [Key Performance Indicators (KPIs)](https://github.com/EURODEO/e-soh-kpis).
+
 
 ### 2.2. Components and Interfaces
 
@@ -283,6 +327,8 @@ In the event of a worst case situation, if only the source code still remains, t
 
 To mitigate a disaster or total loss of data a geo and service redundancy should be established at least for the project source code (e.g. automated mirroring/pulling of the public repository). Backup systems may also be created inside the EUMETSAT cloud to create further redundancy.
 
+To mitigate temporal outages of some instances, a orchestration software like Kubernetes should be used. Such a software can automatically restart containers or provide new instantiated ones.
+
 ## 8. Maintenance and Support
 
 ### 8.1. Code Management and Versioning
@@ -301,9 +347,23 @@ The Version Control System, in this case Github, will also provide feature and e
 Initially the version control system, in this case Github, will also contain all E-SOH documentation. As soon as the system is working in a beta version user documentation and training material will be developped. This material will be made available on the platform which will be chosen in RODEO Work Package 7.
 ### 8.5. Support Channels and SLAs
 
-Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be solved by the next business day. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
+Users should use a ticket system to alert the administration of issues regarding their experience or system/function outages. A ticket should be worked on by the next business day and should be solved by best effort. The SLA for the uptime specifies 99% for the beginning of the project and may be increased in the future.
 
-DWD: Ticket software TBD, ticket solved or replied to on NBD?
+DWD: Ticket software TBD
+
+### 8.6 Open Source License: Apache License 2.0
+
+The software system has been designed as an open-source project, allowing others to view, modify, and distribute the source code under the terms of the Apache License, Version 2.0. The Apache License 2.0 was selected for this project for the following reasons:
+
+  1. Permissive Licensing: The Apache License 2.0 is a permissive open-source license that allows for free use, modification, and distribution of the software, without imposing strict copyleft requirements. This encourages widespread adoption, collaboration, and innovation within the community.
+
+  2. Compatibility: The Apache License 2.0 is compatible with many other open-source licenses, including the GNU General Public License (GPL) version 3, which makes it easier to integrate with third-party libraries, frameworks, or components used in the system.
+
+  3. Intellectual Property Protection: The Apache License 2.0 provides strong protection for contributors by granting a patent license to users, helping to protect against potential patent infringement claims.
+
+  4. Community Acceptance: The Apache License 2.0 is widely used and well-accepted within the open-source community, making it a suitable choice for this project to ensure smooth collaboration with other developers and organizations.
+
+By selecting the Apache License 2.0 for this project, the development team aims to foster an open, collaborative environment that encourages contributions and improvements from the community, while providing legal protection and flexibility for both contributors and users.
 
 ## 9. Conclusion
 ### 9.1. Key Takeaways
