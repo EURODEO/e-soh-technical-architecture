@@ -62,6 +62,11 @@ The TDD is intended to be a living document, updated as necessary throughout the
 * NetCDF
 * mqtt message payload
 * metadata specification
+
+#### 3.2.x MQTT message payload
+
+The [WMO WIS2 Notification Message Encoding]
+
 ## 4. Integration and APIs
 ### 4.1. External Integrations
 #### GTS
