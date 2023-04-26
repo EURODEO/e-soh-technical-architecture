@@ -151,6 +151,12 @@ If we are using WIS2, which has a gateway to GTS, do we need to concern about GT
 
 ### 4.4. API Rate Limiting and Throttling
 
+The OGC API Features and OGC API EDR standards support specifying limits on number of returned responses on both client and server side. Server side limiting will support this throttling functionality and could be one option to be used at the API level. Clients can also ask to limit the response and in this case the server should limit the number of responses and enable paging functionality. If responses exceed the limit the client is given a “next” link to get more responses.
+
+Additionally API's could and should be protected on the network level for example based on IP address and/or other possible identifiers. This kind of hard limiting can be understood as rate limiting. In this case the server should respond with HTTP 429 Too Many Requests response. Note that the server in this case can be something else than the actual server providing the API ie. an external firewall or load balancer.
+
+The FEMDI, WIS2 and E-SOH documentation does not directly mention API Rate limiting and throttling. Two E-SOH requirements, [F02](https://github.com/EURODEO/e-soh-requirements/blob/main/functional-and-non-functional-requirements/functional-and-non-functional-requirements.md#f02---247-availability) and [F28](https://github.com/EURODEO/e-soh-requirements/blob/main/functional-and-non-functional-requirements/functional-and-non-functional-requirements.md#f28---e-soh-to-scale-to-user-demands-for-data) however indirectly touch on the issue. It is assumed that the above measures will be sufficient to address these requirements.
+
 ## 5.Security and Privacy
 ### 5.1. Data Protection and Encryption
 ### 5.2. Authentication and Authorization
