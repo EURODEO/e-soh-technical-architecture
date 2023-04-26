@@ -52,7 +52,7 @@ The diagram below depicts the landscape of the E-SOH system.
 
 On top is the data consumer who is interested in the real-time weather observations. The data consumer can get the data in two ways:
 1. Via the WIS2 Shared services. The WIS2.0 shared services will replace the GTS. In the future the user will be able to retrieve observation data directly from the E-SOH instances (if the local instance allow this). The WIS2.0 shared services will also provide BUFR files.
-2. Via the FEMDI system. The FEMDI system will be build in RODEO Work package It will contain the Data Catalogue and a central API Gateway which will connect the user with the API from the federated E-SOH system.
+2. Via the FEMDI system. The FEMDI system will be build in RODEO Work package It will contain the Data Catalogue and a central API Gateway which will forward the API queries from the user to the Central API from the federated E-SOH system.
 
 The E-SOH federated system consists of a central E-SOH API endpoint, and one local E-SOH instance. Both will be run centrally from the European Weather Cloud. The architecture takes into account local E-SOH implementations. In the diagram only one local E-SOH implementation is depicted, but there can be more.
 The Central E-SOH API endpoint connects the local E-SOH instance within the federated system and all the local E-SOH implementations.
@@ -63,7 +63,19 @@ All local E-SOH instances get data from Observation collection systems and metad
 
 #### 2.1.3. Container Diagram
 
+The container diagram below shows all the main components of the E-SOH system.  
+
 ![C4 container diagram](https://github.com/EURODEO/e-soh-c4/blob/main/03-container-diagram/c4-container-diagram.png)
+
+On the right is the Central E-SOH API Endpoint. In the middle an overview of the components of an E-SOH local instance. Each local E-SOH instance consists of 7 components:
+1. Ingestion. This component will take care of the ingestion of observation data both via push and pull mechanisms.  
+2. Notification service. This component provide notifications to the external systems as soon as new data is ingested, so the data can be pulled by the external systems.
+3. Output encoder. This component is called upon by the Access API if a user wants a specific format like BUFR.
+4. Data and metadata store. The main storage component for data and metadata. It has the memory of a goldfish: it will hold the data only for 24 hours. 
+5. Input decoder. This component is called upon by the Ingestion component for decoding BUFR and csv input. It will use OSCAR to retrieve missing station metadata.
+6. Search and access API's. The endpoint for both the Central E-SOH API endpoint and external WIS2.0 services.
+7. Logging, monitoring, alerting and reporting. This component will do the logging, monitoring and alerting for all the components within the E-SOH local instance. It will also produce reports with metrics based of the [Key Performance Indicators (KPIs)](https://github.com/EURODEO/e-soh-kpis).
+
 
 ### 2.2. Components and Interfaces
 
