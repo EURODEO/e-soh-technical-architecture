@@ -96,15 +96,37 @@ If we are using WIS2, which has a gateway to GTS, do we need to concern about GT
 #### OSCAR
 
 ### 4.2. API Specifications
-* OGC EDR
-* OGC API Features
-* OGC API Records
+  **OGC API - Environmental Data Retrieval**
+  WIS 2.0 recommendation is to use OpenAPI 3 compatible api, more specifically OGC EDR if possible. Design choise for E-SOH was to use OGC EDR API to implement api based access to data.
+
+  Environmental Data Retrieval API (EDR) is standard by Open Gespactial Consortium
+
+  The Environmental Data Retrieval (EDR) Application Programming Interface (API) provides a family of lightweight query interfaces to access spatio-temporal data resources by requesting data at a Position, within an Area, along a Trajectory or through a Corridor. A spatio-temporal data resource is a collection of spatio-temporal data that can be sampled using the EDR query pattern geometries. These patterns are described in the section describing the Core Requirements Class.
+
+  The goals of the EDR API are to make it easier to access a wide range of data through a uniform, well-defined simple Web interface, and to achieve data reduction to just the data needed by the user or client while hiding much of the data storage complexity. A major use case for the EDR API is to retrieve small subsets from large collections of environmental data, such as weather observations. The important aspect is that the data can be unambiguously specified by spatio-temporal coordinates.
+
+  Full description of EDR API can be found on OGC website https://docs.ogc.org/is/19-086r5/19-086r5.html
+
+  **OGC API Records**
+  For metadata and catalogue WMO WIS 2.0 is using OGC API - Records (draft) standard. E-SOH will use this API to provide relevant metadata to users and to WMO WIS 2.0.
+
+  A Record makes a resource discoverable by providing summary information (metadata) about the resource. In this context, resources are things that would be useful to a user or developer, such as features.
+
+  OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:
+  * a collection of static files,
+  * a collection of records accessed via an API.
+
+  A catalogue can be deployed as a static collection of records stored in web-accessible files and typically co-located with the resources each record is describing. Such a deployment is amenable to browsing using a web browser or being crawled by a search engine crawler.
+
+  A catalogue can also be deployed as an API with well known endpoints for retrieving information about the catalogue, retrieving records from the catalogue and searching the catalogue for sub-sets of records that satisfy user-defined search criteria.
+
+  Full OGC API Records specification can be found on OGC webiste https://ogcapi.ogc.org/records/
 
 ### 4.3. API Authentication and Authorization
-* wait for FEMDI
+  
+  For API Authentication and Authorization E-SOH will be relying on FEMDI implementation. FEMDI will implement these techniques on later iterations.
+
 ### 4.4. API Rate Limiting and Throttling
-
-
 
 ## 5.Security and Privacy
 ### 5.1. Data Protection and Encryption
