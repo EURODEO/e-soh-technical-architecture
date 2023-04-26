@@ -99,6 +99,7 @@ Recommendations:
 
 ## 4. Integration and APIs
 ### 4.1. External Integrations
+
 #### GTS
 
 Data going in GTS network needs WMO-title “TTAAii”, which tells: the type of the data and where did it come from. WMO-title should be given in the beginning of the data. List of the TTAA  can be found in: WMO-No. 386 Document (Manual on the Global Telecommunication System, PART II, chapter 5, Attachment II-5 Data Designators T1T2A1A2ii in abbreviated headings). “ii”-part is used to separate same kind of data from another.
@@ -117,6 +118,11 @@ WIGOS identifiers can be included in some BUFR templates:
 If we are using WIS2, which has a gateway to GTS, do we need to concern about GTS anymore?
 
 #### OSCAR
+OSCAR/Surface is the World Meteorological Organization's official repository of WIGOS metadata for all surface-based observing stations and platforms. Metadata on the capabilities of observing stations / platforms and their instruments and methods of observation, are routinely submitted to and maintained in OSCAR/Surface by WMO Members. The E-SOH system will retrieve metadata about the observation station from Oscar in case it is missing in provided data (i.e. BUFR or CSV-input)
+Station metadata can be pulled from Oscar/Surface with a REST API is available here: 
+https://oscar.wmo.int/surface/rest/api/search/station?territoryName=NLD 
+(This call will get you all the dutch observation stations)
+Documentation on how to use the OSCAR REST API available here: https://oscar.wmo.int/surface/#/ -> API: How can I extract lists of stations from OSCAR/Surface?
 
 ### 4.2. API Specifications
   **OGC API - Environmental Data Retrieval**
