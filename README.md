@@ -54,7 +54,10 @@ On top is the data consumer who is interested in the real-time weather observati
 1. Via the WIS2 Shared services. The WIS2.0 shared services will replace the GTS. In the future the user will be able to retrieve observation data directly from the E-SOH instances (if the local instance allow this). The WIS2.0 shared services will also provide BUFR files.
 2. Via the FEMDI system. The FEMDI system will be build in RODEO Work package It will contain the Data Catalogue and a central API Gateway which will connect the user with the API from the federated E-SOH system.
 
-The E-SOH federated system consists of a central E-SOH API endpoint, one central local E-SOH instance and possibly some local E-SOH implementations. In the diagram only one local E-SOH implementation is depicted, but there can be more.
+The E-SOH federated system consists of a central E-SOH API endpoint, and one local E-SOH instance. Both will be run centrally from the European Weather Cloud. The architecture takes into account local E-SOH implementations. In the diagram only one local E-SOH implementation is depicted, but there can be more.
+The Central E-SOH API endpoint connects the local E-SOH instance within the federated system and all the local E-SOH implementations.
+
+All local E-SOH instances get data from Observation collection systems and metadata from Oscar. This also goes for the local E-SOH implementation on the right in the diagram, but the arrows are not drawn to keep the picture as simple as possible.
 
 
 
