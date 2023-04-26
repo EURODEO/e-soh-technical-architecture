@@ -139,7 +139,19 @@ Recommendations:
 * BUFR
 * CSV
 * GeoJSON
-* MQTT message payload
+
+#### 3.2.x MQTT message payload
+
+The (draft) [WMO WIS2 Notification Message Encoding](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html) defines the content, structure, and encoding for the WIS2 Notification Message Encoding. The standard is an extension of the [OGC API - Features standard](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html#_footnotedef_3).
+
+Requirements:
+* The MQTT notification messages shall follow the (draft) [WMO WIS2 Notification Message Encoding](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html)
+
+Options for the MQTT message payload:
+* We have decided that actual data can be embedded in the MQTT message (as long as it below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to [section 7.1.7.7.](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html#_additional_properties) in the encoding specification.
+* If data records are embedded in the message, also its discovery metadata must be embedded as ACDD attributes
+* If data records are embedded in the message, also its use metadata following CF convention must be embedded 
+* In this context, it must be defined how these messages relate to BUFR files or if separate messages should be submitted for the BUFR files, etc.
 
 ## 4. Integration and APIs
 ### 4.1. External Integrations
