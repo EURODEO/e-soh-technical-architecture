@@ -57,7 +57,7 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 ### 3.2. Data Models
 
-A dataset is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata).
+A dataset is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata). In the E-SOH context, we consider the (Near-) Real-Time (NRT) data as extracts of externally available datasets like, e.g., climate timeseries. We refer to these datasets as "parent" datasets, whereas the extracts are referred to as "child" datasets.
 
 #### 3.2.1 Metadata specification
 
@@ -65,9 +65,10 @@ The following principles shall be followed:
 
 * A minimum set of (required and recommended) metadata must follow the data, i.e., as part of the data files output from E-SOH APIs and the event queue.
 * Input datasets must be enriched by required metadata upon ingestion, if it is not already provided.
-* It must be possible to translate from the agreed data-following standards to other standards, e.g., DCAT, ISO19115, etc.
-* All datasets must have defined use constraints provided by a standard license or release statement ("no rights reserved")
-* All datasets must have defined access constraints (in particular for fully or partly restricted datasets)
+* In order to obtain traceability, a child dataset must reference its parent dataset by the parent's metadata identification. The parent dataset's identification is expected to be actionable, but the NRT dataset identification is not.
+* To support interoperability, it must be possible to translate from the agreed data-following standards to other standards (e.g., DCAT, ISO19115, etc.).
+* All datasets must have defined use constraints provided by a standard license or release statement ("no rights reserved").
+* All datasets must have defined access constraints (in particular for fully or partly restricted datasets). The optional access constraints must be defined by a controlled vocabulary.
 
 The [Attribute Convention for Data Discovery](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3) describes attributes recommended for describing a NetCDF dataset to data discovery systems. It should be possible to use the ACDD vocabulary in, e.g., GeoJSON or CoverageJSON as well.
 
@@ -77,7 +78,6 @@ Recommendations:
 * The ACDD vocabulary should be used to make datasets Findable, with extensions where necessary to promote Interoperability with existing standards (e.g., DCAT, ISO19115 and profiles of these)
 * The CF conventions should be followed to enable Reuse
 * Use a standard license, e.g., [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/), provided by the URL in the form similar to "<URL> (<Identifier>)" using elements from the [SPDX license list](https://spdx.org/licenses/).
-
 
 #### 3.2.2 Transfer and storage formats
 
