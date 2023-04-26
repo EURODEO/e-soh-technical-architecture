@@ -40,12 +40,23 @@ The TDD is intended to be a living document, updated as necessary throughout the
 ### 2.1. Architecture
 #### 2.1.1. Context Diagram
 In this diagram the context of the E-SOH system is depicted.
+
 ![Top level C4 context diagram](https://github.com/EURODEO/e-soh-c4/blob/main/01-context-diagram-toplevel/E-SOH-C4-toplevel-context-diagram.png)
+
 On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
 On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
 #### 2.1.2. Landscape Diagram
+The diagram below depicts the landscape of the E-SOH system.
 
 ![C4 landscape diagram](https://github.com/EURODEO/e-soh-c4/blob/main/02-landscape-diagram/E-SOH-C4-landscape-diagram.png)
+
+On top is the data consumer who is interested in the real-time weather observations. The data consumer can get the data in two ways:
+1. Via the WIS2 Shared services. The WIS2.0 shared services will replace the GTS. In the future the user will be able to retrieve observation data directly from the E-SOH instances (if the local instance allow this). The WIS2.0 shared services will also provide BUFR files.
+2. Via the FEMDI system. The FEMDI system will be build in RODEO Work package It will contain the Data Catalogue and a central API Gateway which will connect the user with the API from the federated E-SOH system.
+
+The E-SOH federated system consists of a central E-SOH API endpoint, one central local E-SOH instance and possibly some local E-SOH implementations. In the diagram only one local E-SOH implementation is depicted, but there can be more.
+
+
 
 #### 2.1.3. Container Diagram
 
