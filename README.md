@@ -197,6 +197,8 @@ In the event of a worst case situation, if only the source code still remains, t
 
 To mitigate a disaster or total loss of data a geo and service redundancy should be established at least for the project source code (e.g. automated mirroring/pulling of the public repository). Backup systems may also be created inside the EUMETSAT cloud to create further redundancy.
 
+To mitigate temporal outages of some instances, a orchestration software like Kubernetes should be used. Such a software can automatically restart containers or provide new instantiated ones.
+
 ## 8. Maintenance and Support
 
 ### 8.1. Code Management and Versioning
