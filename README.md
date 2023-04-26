@@ -76,10 +76,10 @@ The following principles shall be followed:
 
 * A minimum set of (required and recommended) metadata must follow the data, i.e., as part of the data files output from E-SOH APIs and the event queue.
 * Input datasets must be enriched by required metadata upon ingestion, if it is not already provided.
-* In order to obtain traceability, a child dataset must reference its parent dataset by the parent's metadata identification. The parent dataset's identification is expected to be actionable, but the NRT dataset identification is not.
+* In order to obtain traceability, a child dataset must reference its parent dataset by the parent's metadata identification. The parent dataset's metadata identification is expected to be persistent and actionable, but the NRT dataset identification is not.
 * To support interoperability, it must be possible to translate from the agreed data-following standards to other standards (e.g., DCAT, ISO19115, etc.).
 * All datasets must have defined use constraints provided by a standard license or release statement ("no rights reserved").
-* All datasets must have defined access constraints (in particular for fully or partly restricted datasets). The optional access constraints must be defined by a controlled vocabulary.
+* All datasets must have defined access constraints (in particular for fully or partly restricted datasets, although this is not currently in the scope  of E-SOH). The optional access constraints must be defined by a controlled vocabulary.
 
 The [Attribute Convention for Data Discovery](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3) describes attributes recommended for describing a NetCDF dataset to data discovery systems. It should be possible to use the ACDD vocabulary in, e.g., GeoJSON or CoverageJSON as well.
 
@@ -104,9 +104,9 @@ Requirements:
 * The MQTT notification messages shall follow the (draft) [WMO WIS2 Notification Message Encoding](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html)
 
 Options for the MQTT message payload:
-* We have decided that actual data can be embedded in the MQTT message (as long as it below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to [section 7.1.7.7.](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html#_additional_properties) in the encoding specification.
+* We have decided that actual data can be embedded in the MQTT message (as long as it is below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to [section 7.1.7.7.](https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html#_additional_properties) in the encoding specification.
 * If data records are embedded in the message, also its discovery metadata must be embedded as ACDD attributes
-* If data records are embedded in the message, also its use metadata following CF convention must be embedded 
+* If data records are embedded in the message, also its use metadata following the CF conventions must be embedded 
 * In this context, it must be defined how these messages relate to BUFR files or if separate messages should be submitted for the BUFR files, etc.
 
 ## 4. Integration and APIs
