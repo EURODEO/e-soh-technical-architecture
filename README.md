@@ -18,11 +18,14 @@ The TDD is intended to be a living document, updated as necessary throughout the
 
 | Abbreviation  | Meaning                                                                          |
 |---------------|----------------------------------------------------------------------------------|
-| API           | Application Programming Interface                                                |
+| ACDD          | [Attribute Convention for Data Discovery](https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery) |
+| API           | [Application Programming Interface](https://en.wikipedia.org/wiki/API)                                                |
 | AWS           | Automatic Weather Station                                                        |
 | BUFR          | Binary Universal Form for the Representation of meteorological data              |
 | CSV           | [Comma Separates Values - tabular data model](https://www.w3.org/TR/tabular-data-model/) |
 | CoverageJSON  | [OGC CoverageJSON Community Standard for publishing spatiotemporal data to the Web](https://opengeospatial.github.io/ogcna-auto-review/21-069.html)|
+| DCAT          | [Data Catalog Vocabulary](https://www.w3.org/TR/vocab-dcat/)                     |
+| DCAT-AP       | [DCAT Application profile for data portals in Europe](https://op.europa.eu/en/web/eu-vocabularies/dcat-ap) |
 | EDR           | [OGC API - Environmental Data Retrieval](https://ogcapi.ogc.org/edr/)            |
 | E-SOH         | EUMETNET Supplementary Observation dataHub                                       |
 | EUMETNET      | [A Network of 31 European NMHSs](https://eumetnet.eu)|
