@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-### 1.1. Purpose and Scope
+### 1.1. Purpose of the Document
 
 The purpose of this Technical Design Document (TDD) is to provide a comprehensive and detailed description of the software system being developed, to serve as a reference for all stakeholders involved in the project. This document aims to:
 * Define the software's architecture, components, and their relationships.
@@ -13,8 +13,12 @@ The purpose of this Technical Design Document (TDD) is to provide a comprehensiv
 
 The TDD is intended to be a living document, updated as necessary throughout the software development life cycle to reflect any changes or refinements made to the system design. It is essential for all stakeholders, including project managers, developers, testers, and end-users, to have a clear understanding of the software system's design to ensure effective collaboration and successful project completion.
 
+### 1.2. Scope of the System
 
-### 1.2. Definitions, Acronyms, and Abbreviations
+The vision of the EUMETNET Supplementary Observations dataHub (E-SOH) is to deliver the first component of an FEMDI, that is sustainable and meets the technical requirements and standards of international bodies, including WMO (e.g., WIS 2.0) and the European Union (e.g., HVD). The aim is to enable increased sharing of observations and to allow a gradual transition from the use of the Global Telecommunication System (GTS) to the use of the Internet for collection and distribution of information. In particular, E-SOH is selected as a demonstration project of WIS 2.0 in order to be used to illustrate, evolve, validate and/or refine its concepts, solutions, and implementation approach.
+
+
+### 1.3. Definitions, Acronyms, and Abbreviations
 
 | Abbreviation  | Meaning                                                                          |
 |---------------|----------------------------------------------------------------------------------|
@@ -46,7 +50,7 @@ The TDD is intended to be a living document, updated as necessary throughout the
 | WIS           | [WMO Information System](https://community.wmo.int/en/activity-areas/wis)        |
 | WMO           | [World Meteorological Organization](https://wmo.int)                             |
 
-### 1.3. References
+### 1.4. References
 
 * WIS 2.0 MQTT topic architecture: https://github.com/wmo-im/wis2-topic-hierarchy
 * WMO Core Metadata profile 2: https://github.com/wmo-im/wcmp2
