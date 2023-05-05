@@ -1,0 +1,4 @@
+.vagrant/
+html/
+pdf/
+*.log

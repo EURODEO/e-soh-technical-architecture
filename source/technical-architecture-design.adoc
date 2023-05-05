@@ -1,0 +1,15 @@
+:doctype: book
+:pdf-folio-placement: physical
+:media: prepress
+:sectnums:
+:sectnumlevels: 6
+:sectanchors:
+:toc: macro
+:chapter-label:
+:xrefstyle: short
+:toclevels: 6
+
+include::title-page.adoc[]
+
+:numbered:
+include::all.adoc[]

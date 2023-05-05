@@ -1,0 +1,30 @@
+@startuml "E-SOH-C4-toplevel-context-diagram"
+
+!include <C4/C4_Context>
+
+'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+' or use local:
+'!include C4_Context.puml
+
+'LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+LAYOUT_WITH_LEGEND()
+
+title E-SOH top-level C4 context diagram (C4 model: https://c4model.com/)
+
+System_Ext(srcsys, "Observation data and related metadata", "Observations Collection and Generation. Networks and systems operated by members, 3rd parties and members of the public.")
+System(esoh, "E-SOH system", "EUMETNET Supplementary Observations Data-Hub (E-SOH)")
+
+Rel_R(srcsys, esoh, "Data&metadata")
+
+System_Ext(consys, "Consumer systems", "Existing and new consumer systems")
+Person_Ext(enduser, "Data end-users", "Data end-users will connect to consumer systems")
+
+Rel_R(esoh, consys, "Data&metadata")
+Rel_L(enduser, consys, "visualizes data in")
+
+'layout wishes:
+Lay_R(consys, enduser)
+
+
+@enduml

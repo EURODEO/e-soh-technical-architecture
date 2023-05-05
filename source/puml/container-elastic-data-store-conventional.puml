@@ -1,0 +1,27 @@
+@startuml "c4-container-elastic-data-store-conventional"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+'1C
+
+AddElementTag("microService", $shape=EightSidedShape(), $bgColor="CornflowerBlue", $fontColor="white", $legendText="micro service\neight sided")
+
+Person(consumer, "Data Consumer")
+
+System(its, "Ingest, Transform, Store", "The ITS system may have to enrich the metadata of some datasets, e.g., input BUFR files that are missing location metadata but contain the WIGOS identification.")
+
+SystemQueue(queue, "Notification Service", "MQTT broker. WIS2 real-time data sharing by a publication/subscription (PubSub) mechanism.")
+
+Container(edr, "Search and Access APIs", "", "OGC EDR and OGC Records", $tags = "microService")
+ContainerDb(db, "Elasticsearch database")
+Container(eventsender, "Event Dispatcher")
+
+Rel_R(its, db, "add (meta)data", "JSON?")
+Rel_R(its, eventsender, "notifies of new entry")
+Rel_R(eventsender, queue, "send notifications", "mqtt")
+
+Rel(consumer, queue, "listen to notifications", "mqtt over websockets")
+
+Rel(edr, db, "search and access data", "JSON")
+Rel(consumer, edr, "finds and accesses data with", "http")
+
+@enduml

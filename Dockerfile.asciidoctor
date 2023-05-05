@@ -1,0 +1,18 @@
+#
+# Docker file used in GitHub Actions to build HTML and PDF
+# versions of metno/data-management-handbook
+#
+
+FROM asciidoctor/docker-asciidoctor:latest
+LABEL maintainer="mortenwh@met.no"
+
+RUN mkdir /workdir; \
+    mkdir /pdf; \
+    mkdir /html; \
+    mkdir /docs
+
+VOLUME /html
+VOLUME /pdf
+VOLUME /docs
+VOLUME /workdir
+WORKDIR /workdir

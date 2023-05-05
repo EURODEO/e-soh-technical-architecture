@@ -1,0 +1,25 @@
+= E-SOH Technical Architecture Design Document
+Mikko Rauhala, Morten W. Hansen, Gijsbert Kruithof, Johannes T. Langvatn, Håvard Futsæter, Mikko Visa, Steffen Kremer, Tytti H. Mustonen, Lasse Latva.
+
+[discrete]
+== Abstract
+
+This Technical Design Document (TDD) provides a comprehensive and detailed
+description of the software system being developed, to serve as a reference for
+all stakeholders involved in the project.
+
+toc::[]
+
+[discrete]
+== Revision history
+
+[cols=",,,",]
+|=======================================================================
+|Version |Date |Comment |Responsible
+
+|1.0 |2023-04-28 |First version |Morten W. Hansen
+
+|=======================================================================
+
+
+
