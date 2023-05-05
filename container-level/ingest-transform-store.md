@@ -1,1 +1,0 @@
-# Ingest, Transform, Store (ITS)
