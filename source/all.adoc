@@ -263,9 +263,11 @@ Recommendations:
 The (draft) link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html[WMO WIS2 Notification Message Encoding] defines the content, structure, and encoding for the WIS2 Notification Message Encoding. The standard is an extension of the link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_footnotedef_3[OGC API - Features standard].
 
 Requirements:
+
 * The MQTT notification messages shall follow the (draft) link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html[WMO WIS2 Notification Message Encoding]
 
 Options for the MQTT message payload:
+
 * We have decided that actual data can be embedded in the MQTT message (as long as it is below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_additional_properties[section 7.1.7.7.] in the encoding specification.
 * If data records are embedded in the message, also its discovery metadata must be embedded as ACDD attributes
 * If data records are embedded in the message, also its use metadata following the CF conventions must be embedded 
