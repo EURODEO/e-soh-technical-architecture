@@ -1115,15 +1115,33 @@ The overall concepts of CoverageJSON are close to those of the [ISO19123] standa
 <p>The (draft) <a href="https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html">WMO WIS2 Notification Message Encoding</a> defines the content, structure, and encoding for the WIS2 Notification Message Encoding. The standard is an extension of the <a href="https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_footnotedef_3">OGC API - Features standard</a>.</p>
 </div>
 <div class="paragraph">
-<p>Requirements:
-* The MQTT notification messages shall follow the (draft) <a href="https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html">WMO WIS2 Notification Message Encoding</a></p>
+<p>Requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The MQTT notification messages shall follow the (draft) <a href="https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html">WMO WIS2 Notification Message Encoding</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Options for the MQTT message payload:
-* We have decided that actual data can be embedded in the MQTT message (as long as it is below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to <a href="https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_additional_properties">section 7.1.7.7.</a> in the encoding specification.
-* If data records are embedded in the message, also its discovery metadata must be embedded as ACDD attributes
-* If data records are embedded in the message, also its use metadata following the CF conventions must be embedded
-* In this context, it must be defined how these messages relate to BUFR files or if separate messages should be submitted for the BUFR files, etc.</p>
+<p>Options for the MQTT message payload:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We have decided that actual data can be embedded in the MQTT message (as long as it is below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to <a href="https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_additional_properties">section 7.1.7.7.</a> in the encoding specification.</p>
+</li>
+<li>
+<p>If data records are embedded in the message, also its discovery metadata must be embedded as ACDD attributes</p>
+</li>
+<li>
+<p>If data records are embedded in the message, also its use metadata following the CF conventions must be embedded</p>
+</li>
+<li>
+<p>In this context, it must be defined how these messages relate to BUFR files or if separate messages should be submitted for the BUFR files, etc.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1664,7 +1682,7 @@ The production environment is where the live system operates and serves end-user
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-04 17:50:01 UTC
+Last updated 2023-05-08 15:19:33 UTC
 </div>
 </div>
 </body>
