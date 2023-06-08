@@ -3,6 +3,7 @@
 === Purpose of the Document
 
 The purpose of this Technical Design Document (TDD) is to provide a comprehensive and detailed description of the software system being developed, to serve as a reference for all stakeholders involved in the project. This document aims to:
+
 * Define the software's architecture, components, and their relationships.
 * Communicate the design decisions and rationale behind the chosen solutions.
 * Provide clear specifications and guidelines for the development team to ensure consistent implementation of features and functionality.
@@ -248,6 +249,7 @@ The link:https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3[At
 The link:https://cfconventions.org/[CF metadata conventions] define (use) metadata that provide a definitive description of what the data in each variable of a NetCDF file represents, as well as its spatial and temporal properties. This enables users to understand and reuse the data. The CF metadata conventions were created for the NetCDF format, but there are ongoing efforts to also use it for the definition of a standard JSON format for the exchange of weather and climate data; link:http://cf-json.org/[CF-JSON].
 
 Recommendations:
+
 * The ACDD vocabulary should be used to make datasets Findable, with extensions where necessary to promote Interoperability with existing standards (e.g., DCAT, ISO19115 and profiles of these)
 * The CF conventions should be followed to enable Reuse
 * Use a standard license, e.g., link:https://creativecommons.org/licenses/by/4.0/[CC-BY-4.0], provided by the URL in the form similar to "<URL> (<Identifier>)" using elements from the link:https://spdx.org/licenses/[SPDX license list].
@@ -322,6 +324,7 @@ WIS 2.0 recommends the "OGC API - Records" standard for the (discovery) metadata
 A Record makes a resource discoverable by providing summary information (metadata) about the resource. In this context, resources are things that would be useful to a user or developer, such as features.
 
 OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:
+
 * a collection of static files,
 * a collection of records accessed via an API.
 

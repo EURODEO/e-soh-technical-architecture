@@ -436,6 +436,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<script src="/assets/js/tocbot.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
+
+<style>
+  #tocbot a.toc-link.node-name--H2{ font-weight:700; }
+  @media screen{
+
+    #tocbot a.toc-link{ height:100% }
+    .is-collapsible{ max-height:3000px; overflow:hidden; }
+    .is-collapsed{ max-height:0 }
+    .is-active-link{ font-weight:700; font-color:#ba3925; }
+
+  }
+  @media print{
+    #tocbot a.toc-link.node-name--H4{ display:none }
+  }
+</style>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -605,12 +623,26 @@ all stakeholders involved in the project.</p>
 <div class="sect2">
 <h3 id="_purpose_of_the_document"><a class="anchor" href="#_purpose_of_the_document"></a>1.1. Purpose of the Document</h3>
 <div class="paragraph">
-<p>The purpose of this Technical Design Document (TDD) is to provide a comprehensive and detailed description of the software system being developed, to serve as a reference for all stakeholders involved in the project. This document aims to:
-* Define the software&#8217;s architecture, components, and their relationships.
-* Communicate the design decisions and rationale behind the chosen solutions.
-* Provide clear specifications and guidelines for the development team to ensure consistent implementation of features and functionality.
-* Establish a baseline for testing and validation, ensuring that the software meets the requirements and design goals.
-* Serve as a reference for future maintenance, support, and enhancement of the software system.</p>
+<p>The purpose of this Technical Design Document (TDD) is to provide a comprehensive and detailed description of the software system being developed, to serve as a reference for all stakeholders involved in the project. This document aims to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define the software&#8217;s architecture, components, and their relationships.</p>
+</li>
+<li>
+<p>Communicate the design decisions and rationale behind the chosen solutions.</p>
+</li>
+<li>
+<p>Provide clear specifications and guidelines for the development team to ensure consistent implementation of features and functionality.</p>
+</li>
+<li>
+<p>Establish a baseline for testing and validation, ensuring that the software meets the requirements and design goals.</p>
+</li>
+<li>
+<p>Serve as a reference for future maintenance, support, and enhancement of the software system.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The TDD is intended to be a living document, updated as necessary throughout the software development life cycle to reflect any changes or refinements made to the system design. It is essential for all stakeholders, including project managers, developers, testers, and end-users, to have a clear understanding of the software system&#8217;s design to ensure effective collaboration and successful project completion.</p>
@@ -1091,10 +1123,20 @@ The overall concepts of CoverageJSON are close to those of the [ISO19123] standa
 <p>The <a href="https://cfconventions.org/">CF metadata conventions</a> define (use) metadata that provide a definitive description of what the data in each variable of a NetCDF file represents, as well as its spatial and temporal properties. This enables users to understand and reuse the data. The CF metadata conventions were created for the NetCDF format, but there are ongoing efforts to also use it for the definition of a standard JSON format for the exchange of weather and climate data; <a href="http://cf-json.org/">CF-JSON</a>.</p>
 </div>
 <div class="paragraph">
-<p>Recommendations:
-* The ACDD vocabulary should be used to make datasets Findable, with extensions where necessary to promote Interoperability with existing standards (e.g., DCAT, ISO19115 and profiles of these)
-* The CF conventions should be followed to enable Reuse
-* Use a standard license, e.g., <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>, provided by the URL in the form similar to "&lt;URL&gt; (&lt;Identifier&gt;)" using elements from the <a href="https://spdx.org/licenses/">SPDX license list</a>.</p>
+<p>Recommendations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The ACDD vocabulary should be used to make datasets Findable, with extensions where necessary to promote Interoperability with existing standards (e.g., DCAT, ISO19115 and profiles of these)</p>
+</li>
+<li>
+<p>The CF conventions should be followed to enable Reuse</p>
+</li>
+<li>
+<p>Use a standard license, e.g., <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>, provided by the URL in the form similar to "&lt;URL&gt; (&lt;Identifier&gt;)" using elements from the <a href="https://spdx.org/licenses/">SPDX license list</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -1234,9 +1276,17 @@ The overall concepts of CoverageJSON are close to those of the [ISO19123] standa
 <p>A Record makes a resource discoverable by providing summary information (metadata) about the resource. In this context, resources are things that would be useful to a user or developer, such as features.</p>
 </div>
 <div class="paragraph">
-<p>OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:
-* a collection of static files,
-* a collection of records accessed via an API.</p>
+<p>OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a collection of static files,</p>
+</li>
+<li>
+<p>a collection of records accessed via an API.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>A catalogue can be deployed as a static collection of records stored in web-accessible files and typically co-located with the resources each record is describing. Such a deployment is amenable to browsing using a web browser or being crawled by a search engine crawler.</p>
@@ -1682,8 +1732,42 @@ The production environment is where the live system operates and serves end-user
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-08 15:19:33 UTC
+Last updated 2023-06-08 11:40:45 UTC
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/3.0.7/tocbot.min.js"></script>
+<script>
+    /* Tocbot dynamic TOC, works with tocbot 3.0.7 */
+    var oldtoc = document.getElementById('toctitle').nextElementSibling;
+    var newtoc = document.createElement('div');
+    newtoc.setAttribute('id', 'tocbot');
+    newtoc.setAttribute('class', 'js-toc');
+    oldtoc.parentNode.replaceChild(newtoc, oldtoc);
+    tocbot.init({ contentSelector: '#content',
+        headingSelector: 'h1, h2, h3, h4',
+        smoothScroll: false,
+        collapseDepth: 2 });
+    var handleTocOnResize = function() {
+        var width = window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth;
+        if (width < 768) {
+            tocbot.refresh({ contentSelector: '#content',
+                headingSelector: 'h1, h2, h3, h4',
+                collapseDepth: 6,
+                activeLinkClass: 'ignoreactive',
+                throttleTimeout: 1000,
+                smoothScroll: false });
+        }
+        else {
+            tocbot.refresh({ contentSelector: '#content',
+                headingSelector: 'h1, h2, h3, h4',
+                smoothScroll: false,
+                collapseDepth: 2 });
+        }
+    };
+    window.addEventListener('resize', handleTocOnResize);
+    handleTocOnResize();
+</script>
 </body>
 </html>

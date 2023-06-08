@@ -1,0 +1,18 @@
+<script src="/assets/js/tocbot.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
+
+<style>
+  #tocbot a.toc-link.node-name--H2{ font-weight:700; }
+  @media screen{
+
+    #tocbot a.toc-link{ height:100% }
+    .is-collapsible{ max-height:3000px; overflow:hidden; }
+    .is-collapsed{ max-height:0 }
+    .is-active-link{ font-weight:700; font-color:#ba3925; }
+ 
+  }
+  @media print{
+    #tocbot a.toc-link.node-name--H4{ display:none }
+  }
+</style>

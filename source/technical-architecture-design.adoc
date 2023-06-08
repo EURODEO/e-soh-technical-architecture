@@ -1,5 +1,6 @@
 :doctype: book
 :pdf-folio-placement: physical
+:docinfo: shared
 :media: prepress
 :sectnums:
 :sectnumlevels: 6
