@@ -443,7 +443,16 @@ These tests should include but are not limited to:
 
 == Deployment and Operations
 
-All environments run in the EWC.
+All environments run in the EWC. The EWC uses Virtual Machine instances with the following currently possible configuration options:
+
+* Ressources
+  ** 8 vCores 16GB RAM
+  ** 16 vCores 32GB RAM
+  ** Many smaller plans in different steps
+* Operating systems
+  ** CentOS 7.9
+  ** RockyLinux 8.8
+  ** Ubuntu 18.04/20.04/22.04
 
 === Deployment Environments
 
