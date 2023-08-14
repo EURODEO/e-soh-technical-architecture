@@ -14,7 +14,7 @@ System_Boundary(esoh, "E-SOH local instance"){
 
     Container(queries, "Search and Access APIs", "e.g., pygeoapi", "OGC EDR and Records. Direct local access can be enabled depending on the local data policy.", $tags = "microService")
 
-    Container(ingestion, "Ingestion", "?", "Validate incoming, and forward to data and metadata store. API or object-store?")
+    Container(ingestion, "Data Ingestion API(s)", "?", "Validate incoming, and forward to data and metadata store. API or object-store?")
     Container(decoder, "Input decoder", "?", "Decode input data (e.g., BUFR, CSV), validate and enrich (e.g., input files that are missing location metadata but contain the WIGOS identification), and write to E-SOH format.")
 
     Container(output_encoder, "Output encoder", "?", "Output files (e.g., BUFR) are created based on API query.")
