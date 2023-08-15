@@ -445,7 +445,7 @@ These tests should include but are not limited to:
 
 All environments run in the EWC. The EWC uses Virtual Machine instances with the following currently possible configuration options:
 
-* Ressources
+* Resources
   ** 8 vCores 16GB RAM
   ** 16 vCores 32GB RAM
   ** Many smaller plans in different steps
