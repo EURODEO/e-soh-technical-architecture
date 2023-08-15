@@ -262,7 +262,7 @@ Recommendations:
 
 ==== MQTT message payload
 
-The (draft) link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html[WMO WIS2 Notification Message Encoding] defines the content, structure, and encoding for the WIS2 Notification Message Encoding. The standard is an extension of the link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_footnotedef_3[OGC API - Features standard].
+The (draft) link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html[WMO WIS2 Notification Message Encoding] defines the content, structure, and encoding for the WIS2 Notification Message Encoding. The standard is an extension of the link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html#_footnotedef_3[OGC API - Features standard].
 
 Requirements:
 
