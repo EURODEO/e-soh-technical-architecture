@@ -6,8 +6,8 @@
 ' or use local:
 '!include C4_Context.puml
 
-LAYOUT_TOP_DOWN()
-'LAYOUT_LEFT_RIGHT()
+'LAYOUT_TOP_DOWN()
+LAYOUT_LEFT_RIGHT()
 'LAYOUT_AS_SKETCH()
 'LAYOUT_WITH_LEGEND()
 
