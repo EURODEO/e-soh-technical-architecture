@@ -362,15 +362,15 @@ E-SOH will employ pygeoapi for serving the OGC EDR and Records APIs, since this 
 
 Benefits:
 
-- There is an established process around working with metadata standards
-- Open-Source Software Reuse
-- Access to experienced people with insight in the implementation
+* There is an established process around working with metadata standards
+* Open-Source Software Reuse
+* Access to experienced people with insight in the implementation
 
 Concerns:
 
-- A plugin for pygeoapi needs to be developed to interact with the E-SOH Data and Metadata Store
-- There is some risk that we will not be able to implement necessary functionalities, and the time it will take to implement new solutions is highly uncertain. Since we do not know if modules fit together.
-- Danger of building a solution that is too complex in relation to what we need. KNMI has demonstrated that, with little code, we can implement a simple EDR API that can read data from storage. However, this cannot support metadata interoperability, which is important.
+* A plugin for pygeoapi needs to be developed to interact with the E-SOH Data and Metadata Store
+* There is some risk that we will not be able to implement necessary functionalities, and the time it will take to implement new solutions is highly uncertain. Since we do not know if modules fit together.
+* Danger of building a solution that is too complex in relation to what we need. KNMI has demonstrated that, with little code, we can implement a simple EDR API that can read data from storage. However, this cannot support metadata interoperability, which is important.
 
 == Security and Privacy
 
