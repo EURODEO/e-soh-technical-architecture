@@ -129,6 +129,10 @@ On the right is the Central E-SOH API Endpoint. In the middle are all the compon
 
 === Component Design
 
+==== Notification Service
+
+Based on investigations documented in the link:https://github.com/EURODEO/e-soh-poc-report[E-SOH PoC Report], RabbitMQ is the technology choice for the E-SOH Notification Service. The main drawback is that it does not support MQTT V5 but we expect that this is coming.
+
 ==== Data and Metadata Store
 
 ===== Datastore alternatives
