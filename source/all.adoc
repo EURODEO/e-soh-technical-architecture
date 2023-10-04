@@ -25,7 +25,7 @@ The vision of the EUMETNET Supplementary Observations dataHub (E-SOH) is to deli
 |ACDD |link:https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery[Attribute Convention for Data Discovery]
 |API  |link:https://en.wikipedia.org/wiki/API[Application Programming Interface]
 |AWS  |Automatic Weather Station
-|BUFR |Binary Universal Form for the Representation of meteorological data
+|BUFR |link:https://library.wmo.int/records/item/35625-manual-on-codes-international-codes-volume-i-2?offset=3/[Binary Universal Form for the Representation of meteorological data]
 |CSV  |link:https://www.w3.org/TR/tabular-data-model/[Comma Separates Values - tabular data model]
 |CoverageJSON |link:https://opengeospatial.github.io/ogcna-auto-review/21-069.html[OGC CoverageJSON Community Standard for publishing spatiotemporal data to the Web]
 |DCAT |link:https://www.w3.org/TR/vocab-dcat/[Data Catalog Vocabulary]
@@ -60,7 +60,8 @@ The vision of the EUMETNET Supplementary Observations dataHub (E-SOH) is to deli
 * Discovery Metadata vocabulary: https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3
 * CF standard ontology: https://vocab.nerc.ac.uk/standard_name/ https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
 * OGC API - Environmental Data Retrieval Standard v1.0.1 https://docs.ogc.org/is/19-086r5/19-086r5.html
-
+* WMO Codes Registry: https://codes.wmo.int/
+* WMO BUFR edition 4 tables: https://github.com/wmo-im/BUFR4
 
 == System Overview
 === Architecture
