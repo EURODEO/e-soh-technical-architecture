@@ -265,6 +265,32 @@ Recommendations:
 
 ==== BUFR
 
+BUFR is Binary Universal Form for (mostly meteorological) data Representation. The current edition is 4. BUFR is a continous bit stream(Section 4) with header(Section1) and contents(Section3). The data is coded by tables. The tables are defined by WMO, the current tables version is 34. There are 3 table types
+
+* Element table(B) : define data name, unit, range/precision
+* Sequence table(D) : define sequence of elements/sequences
+* Code/Flag table(C ) : define codes, categories
+
+TODO: MISSING PART
+
+BUFR as input:
+
+The most of BUFR messages are edition 4, but there are few older (edition 3) too. There are many different implementations of BUFR encoding. A lot of manufacturers shipped their own solution with new devices. These devices are out of supported/warrantly period, no hope to harmonize these BUFR messages. The tables defined by WMO, but anybody can create a new tables. Sometimes it causes conflict between global(WMO) tables and local(user defined) tables.
+
+BUFR as output:
+
+WMO defined BUFR sequence templates to represent the observations. This is recomended to use for E-SOH system output generation. WIGOS identifiers can be included in some BUFR templates:
+
+* 3 07 024: Ground-based GNSS data – slant total delay
+* 3 07 092: BUFR template for surface observations from n-minute period
+* 3 07 103: Snow observation, snow density, snow water equivalent
+* 3 08 018: Sequence for reporting of basic ship AWS observations
+* 3 09 056: Sequence for representation of radiosonde descent data
+* 3 09 057: Sequence for representation of TEMP, TEMP SHIP and TEMP MOBIL observation type data with higher precision of pressure and geopotential height
+* 3 11 012: BUFR template for aircraft ascent/descent profile with latitude and longitude given for each level
+* 3 15 011: Met-ocean observations from autonomous surface vehicles
+* 3 15 013: Sequence for reporting trajectory profile data from marine animal tags
+
 ==== CSV
 
 ==== GeoJSON
@@ -290,19 +316,7 @@ Options for the MQTT message payload:
 
 ==== GTS
 
-Data going in GTS network needs WMO-title “TTAAii”, which tells: the type of the data and where did it come from. WMO-title should be given in the beginning of the data. List of the TTAA  can be found in: WMO-No. 386 Document (Manual on the Global Telecommunication System, PART II, chapter 5, Attachment II-5 Data Designators T1T2A1A2ii in abbreviated headings). “ii”-part is used to separate same kind of data from another.
-
-WIGOS identifiers can be included in some BUFR templates:
-
-* 3 07 024: Ground-based GNSS data – slant total delay
-* 3 07 092: BUFR template for surface observations from n-minute period
-* 3 07 103: Snow observation, snow density, snow water equivalent
-* 3 08 018: Sequence for reporting of basic ship AWS observations
-* 3 09 056: Sequence for representation of radiosonde descent data
-* 3 09 057: Sequence for representation of TEMP, TEMP SHIP and TEMP MOBIL observation type data with higher precision of pressure and geopotential height
-* 3 11 012: BUFR template for aircraft ascent/descent profile with latitude and longitude given for each level
-* 3 15 011: Met-ocean observations from autonomous surface vehicles
-* 3 15 013: Sequence for reporting trajectory profile data from marine animal tags
+Data going in GTS network needs WMO-title “TTAAii”, which tells: the type of the data and where did it come from. WMO-title should be given in the beginning of the data. List of the TTAA  can be found in: WMO-No. 386 Document (Manual on the Global Telecommunication System, PART II, chapter 5, Attachment II-5 Data Designators T1T2A1A2ii in abbreviated headings). “ii”-part is used to separate same kind of data from another. GTS data is mostly BUFR messages instead of traditional text/TELEX based SYNOP, TEMP, etc messages.
 
 If we are using WIS2, which has a gateway to GTS, do we need to concern about GTS anymore?
 
