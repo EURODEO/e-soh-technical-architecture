@@ -271,11 +271,11 @@ BUFR is Binary Universal Form for (mostly meteorological) data Representation. T
 * Sequence table(D) : define sequence of elements/sequences
 * Code/Flag table(C ) : define codes, categories
 
-TODO: MISSING PART
+The E-SOH system must map table elements to CF variables.
 
 BUFR as input:
 
-The most of BUFR messages are edition 4, but there are few older (edition 3) too. There are many different implementations of BUFR encoding. A lot of manufacturers shipped their own solution with new devices. These devices are out of supported/warrantly period, no hope to harmonize these BUFR messages. The tables defined by WMO, but anybody can create a new tables. Sometimes it causes conflict between global(WMO) tables and local(user defined) tables.
+The most of BUFR messages are edition 4, but there are few older (edition 3) too. There are many different implementations of BUFR encoding. A lot of manufacturers shipped their own solution with new devices. These devices are out of supported/warrantly period, no hope to harmonize incoming BUFR messages. The tables defined by WMO, but anybody can create a new tables. Sometimes it causes conflict between global(WMO) tables and local(user defined) tables. There are not any error-detecting code(for example CRC) in the BUFR message. The E-SOH system discards the incoming message when the size(Section0) and the end(Section5) are not match.
 
 BUFR as output:
 
