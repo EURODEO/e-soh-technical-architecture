@@ -1,0 +1,79 @@
+@startuml "c4-container-diagram"
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+!define osaPuml https://raw.githubusercontent.com/Crashedmind/PlantUML-opensecurityarchitecture2-icons/master
+!include osaPuml/Common.puml
+!include osaPuml/User/all.puml
+
+!include <office/Servers/database_server>
+!include <office/Concepts/folder>
+
+'LAYOUT_TOP_DOWN()
+LAYOUT_LEFT_RIGHT()
+
+AddContainerTag("db", $sprite="database_server", $legendText="database container")
+AddContainerTag("File", $sprite="folder", $legendText="File")
+
+
+SystemQueue_Ext(bufr,"BUFR", "NMHS Observation in BUFR format")
+SystemQueue_Ext(netcdf,"NetCDF", "NMHS Observations in NetCDF format")
+SystemQueue_Ext(csv,"CSV", "NMHS Observation in CSV format")
+SystemDb_Ext(oscar, "WMO OSCAR", "WMO WIGOS metadata DB")
+
+System_Boundary(esoh_system, "E-SOH System"){
+    System_Boundary(esoh_ingest, "E-SOH Ingestion"){
+        System_Boundary(local_oscar, "Local OSCAR", "?", "Descr"){
+            Container(oscar_db,"OSCAR db","json file",$tags=File)
+            Container(oscar_updater,"OSCAR Updater","weekly update")
+        }
+        System_Boundary(input_decoder, "Input Decoder"){
+            Container(bufr_decoder, "BUFR decoder", "", "Decode BUFR, add missing metadata and generate E-SOH MQTT message")
+            Container(netcdf_decoder, "NetCDF decoder", "", "Decode NetCDF, add missing metadata and generate E-SOH MQTT message")
+            Container(csv_decoder, "CSV decoder", "", "Decode CSV, add missing metadata and generate E-SOH MQTT message")   
+        }
+        System_Boundary(mqtt_handler, "MQTT Message Handler"){
+            Container(mqtt_meta, "MQTT Meta", "", "Set id, pubtime, data_id, metadata_id")
+            Container(validator, "MQTT Validator", "", "Check message content")
+            Container(MQTT, "MQTT Message Sender", "", "Sending Message")
+            Container(db_ingest, "DB Ingestion", "", "Sending measure data to store via API. If success, then trigger MQTT sending")
+        }
+        ContainerQueue(queue, "Notification Service", "RabbitMQ", "MQTT Event Queue. WIS2 real-time data sharing by a publication/subscription (PubSub) mechanism based on the Message Queuing Telemetry Transport Protocol.")
+    }
+    System_Boundary(db,"Database"){
+        Container(ingestion, "Data Ingestion API(s)", "", "Validate incoming, and forward to data and metadata store. API or object-store?")
+        ContainerDb(store, "Data and Metadata Store", "Storage of 24 hours of data and indexing.",$tags="db")
+    }
+    Container(lmar, "Logging, monitoring, alerting and reporting", "")
+}
+
+System_Ext(subscribers,"Ext Subscribers", "Ext subscriber")
+
+Rel(csv,csv_decoder,"File or bytestream")
+Rel(bufr,bufr_decoder,"File or bytestream")
+Rel(netcdf,netcdf_decoder,"File or bytestream")
+Rel(csv_decoder,validator,"MQTT json messages")
+Rel(bufr_decoder,validator,"MQTT json messages")
+Rel(netcdf_decoder,validator,"MQTT json messages")
+Rel(validator,mqtt_meta,"MQTT json messages")
+Rel_U(mqtt_meta,db_ingest,"MQTT json messages")
+Rel(mqtt_meta,MQTT,"MQTT json messages")
+BiRel(db_ingest,ingestion,"")
+Rel(ingestion,store,"")
+Rel(db_ingest,MQTT,"Db store verification")
+Rel(MQTT,queue,"MQTT v5.x")
+
+Rel(input_decoder,lmar,"")
+Rel(mqtt_handler,lmar,"")
+
+'BiRel(csv_decoder,oscar_db,"metadata query")
+'BiRel(netcdf_decoder,oscar_db,"metadata query")
+BiRel(bufr_decoder,oscar_db,"metadata query")
+BiRel_U(oscar_updater, oscar, "update metadata")
+BiRel(oscar_updater, oscar_db, "update metadata")
+Rel(local_oscar,lmar,"")
+Rel(queue,subscribers,"MQTT v5.x")
+
+
+
+@enduml
