@@ -18,7 +18,7 @@ The vision of the EUMETNET Supplementary Observations dataHub (E-SOH) is to deli
 
 
 === Definitions, Acronyms, and Abbreviations
- 
+
 [cols="1,5"]
 |=========================
 |*Abbreviation*  |*Meaning*
@@ -105,7 +105,7 @@ be part of the federated system. This is depicted in the right box called
 
 ==== Container Diagram
 
-The container diagram below shows all the main components of the E-SOH system.  
+The container diagram below shows all the main components of the E-SOH system.
 
 [#img-c4-container-diagram]
 .C4 container diagram.
@@ -114,10 +114,10 @@ plantuml::puml/c4-container-diagram.puml[format=png, alt="C4 container diagram"]
 //image::https://github.com/EURODEO/e-soh-c4/blob/main/03-container-diagram/c4-container-diagram.png[C4 container diagram, 1000]
 
 On the right is the Central E-SOH API Endpoint. In the middle are all the components of an E-SOH local instance. Each local E-SOH instance consists of 7 components:
-1. Ingestion. This component will take care of the ingestion of observation data both via push and pull mechanisms.  
+1. Ingestion. This component will take care of the ingestion of observation data both via push and pull mechanisms.
 2. Notification service. This component provides notifications to the external systems as soon as new data is ingested, so the data can be pulled by the external systems.
 3. Output encoder. This component is called upon by the Access API if a user wants a specific format like BUFR.
-4. Data and metadata store. The main storage component for data and metadata. It has the memory of a goldfish: it will hold the data only for 24 hours. 
+4. Data and metadata store. The main storage component for data and metadata. It has the memory of a goldfish: it will hold the data only for 24 hours.
 5. Input decoder. This component is called upon by the Ingestion component for decoding BUFR and csv input. It will use OSCAR to retrieve missing station metadata.
 6. Search and access API's. The endpoint for both the Central E-SOH API endpoint and external WIS2.0 services.
 7. Logging, monitoring, alerting and reporting. This component will do the logging, monitoring and alerting for all the components within the E-SOH local instance. It will also produce reports with metrics based of the link:https://github.com/EURODEO/e-soh-kpis[Key Performance Indicators (KPIs)].
@@ -133,6 +133,21 @@ On the right is the Central E-SOH API Endpoint. In the middle are all the compon
 
 Based on investigations documented in the link:https://github.com/EURODEO/e-soh-poc-report[E-SOH PoC Report], RabbitMQ is the technology choice for the E-SOH Notification Service. The main drawback is that it does not support MQTT V5 but we expect that this is coming.
 
+===== MQTT QoS
+
+There are 3 QoS(quality of service) modes for publishing mqtt messages.
+
+ * QoS 0 – Once (not guaranteed)
+ * QoS 1 – At Least Once (guaranteed)
+ * QoS 2 – Only Once (guaranteed)
+
+
+In QoS 0 messages are published to the queue, and no confirmation is returned from the server.
+In QoS 1 a message is sent, and the client will keep trying to resend until the server acknowledges that the messages are sent. In this mode messages can be sent more then once.
+In QoS 2 starts the same way as QoS 1, but will send new messages with a DUP flag, and will not release the message until the server acknowledges that the message is sent. This mode guarantees that a message is only sent once.
+
+Since we have decided that each message will be tagged with a unique uuid, we have found QoS 1 to be sufficient.
+
 ==== Data and Metadata Store
 
 ===== Datastore alternatives
@@ -146,9 +161,9 @@ First we talk about the different data storage​ alternatives, then we discuss 
 
 ====== Document database approach
 
-Document database approach relies entirely on noSQL database able to store JSON documents. For this purpose there are open source projects like MongoDB and Elastic. 
+Document database approach relies entirely on noSQL database able to store JSON documents. For this purpose there are open source projects like MongoDB and Elastic.
 
-In this project Elastic (formerly Elasticsearch) is investigated and evaluated (see the PoC report). Elastic supports geo-queries and is a distributed database system (reliability and scalability). 
+In this project Elastic (formerly Elasticsearch) is investigated and evaluated (see the PoC report). Elastic supports geo-queries and is a distributed database system (reliability and scalability).
 
 The principle of the document-based database approach is shown in the following diagram
 
@@ -162,7 +177,7 @@ plantuml::puml/container-elastic-data-store-conventional.puml[format=png, alt="C
 
 Relational database with narrow tables can provide a flexible solution for numerical point data and metadata. PostGIS extension to PostgreSQL adds geospatial query capability and there's also an extension called timescaleDB to enhance time series performance in PostgreSQL environment.
 
-The relational database approach is similar to the document database approach (See above), the only change will be the actual database itself. 
+The relational database approach is similar to the document database approach (See above), the only change will be the actual database itself.
 
 [#img-component-diagram-relational-db]
 .C4 component diagram for the relational database approach.
@@ -172,7 +187,7 @@ plantuml::puml/container-relational-store-conventional.puml[format=png, alt="C4 
 
 ====== Relational database with JSON capability
 
-E.g. PostgreSQL and MySQL support JSON datatype. That makes it possible to support structured and semi-structured data in relational database by adding a column for JSON data. 
+E.g. PostgreSQL and MySQL support JSON datatype. That makes it possible to support structured and semi-structured data in relational database by adding a column for JSON data.
 
 The relational database with JSON capability will bridge the fast column lookups from the relational database with the flexibility from the document database approach. This hybrid model is built by the same components as in the relational database (See previous subsection), the only difference is the special JSON datatype column. Probably JSON-queries in pure document-based database will be faster than this hybrid model, but we still maintain the speed from the relational columns.
 
@@ -284,7 +299,7 @@ Options for the MQTT message payload:
 
 * We have decided that actual data can be embedded in the MQTT message (as long as it is below a certain size limit as defined in the MQTT definition). This should be done following the "properties" tag in the JSON schema, according to link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html=_additional_properties[section 7.1.7.7.] in the encoding specification.
 * If data records are embedded in the message, also its discovery metadata must be embedded as ACDD attributes
-* If data records are embedded in the message, also its use metadata following the CF conventions must be embedded 
+* If data records are embedded in the message, also its use metadata following the CF conventions must be embedded
 * In this context, it must be defined how these messages relate to BUFR files or if separate messages should be submitted for the BUFR files, etc.
 
 == Integration and APIs
@@ -347,7 +362,7 @@ A catalogue can also be deployed as an API with well known endpoints for retriev
 Full OGC API Records specification can be found on the link:https://ogcapi.ogc.org/records/[OGC records website].
 
 ==== API Authentication and Authorization
-  
+
 For API Authentication and Authorization E-SOH will be relying on the FEMDI implementation. FEMDI will implement these techniques on later iterations.
 
 ==== API Rate Limiting and Throttling
@@ -393,7 +408,7 @@ Effective auditing and logging are essential for monitoring the software system'
 . Log Monitoring and Analysis: Implement real-time log monitoring and analysis using tools like SIEM solutions to detect and respond to potential security incidents and performance issues.
 . Audit Trails: Maintain audit trails to track changes in the system, such as configuration updates, user privilege modifications, or sensitive data access, enabling accountability and traceability.
 . Compliance: Ensure logging and auditing practices meet relevant industry standards, regulatory requirements, or internal policies, and are regularly reviewed and updated as needed.
- 
+
 By following these practices, the development team can establish a robust and effective auditing and logging strategy, contributing to the software system's security, reliability, and compliance.
 
 === Secure Coding Practices
@@ -592,4 +607,3 @@ By selecting the Apache License 2.0 for this project, the development team aims 
 === Future Considerations
 
 === Final Remarks
-
