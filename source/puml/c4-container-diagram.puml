@@ -1,5 +1,6 @@
 @startuml "c4-container-diagram"
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include <C4/C4_Container>
+'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 'LAYOUT_TOP_DOWN()
 LAYOUT_LEFT_RIGHT()
@@ -17,7 +18,7 @@ System_Boundary(esoh, "E-SOH local instance"){
     Container(ingestion, "Data Ingestion API(s)", "?", "Validate incoming, and forward to data and metadata store. API or object-store?")
     Container(decoder, "Input decoder", "?", "Decode input data (e.g., BUFR, CSV), validate and enrich (e.g., input files that are missing location metadata but contain the WIGOS identification), and write to E-SOH format.")
 
-    Container(output_encoder, "Output encoder", "?", "Output files (e.g., BUFR) are created based on API query.")
+    Container(output_encoder, "Output encoder", "?", "Output files (e.g., BUFR, NetCDF-CF, GeoJSON, CSV) are created based on API query.")
     Container(lmar, "Logging, monitoring, alerting and reporting", "")
 
 

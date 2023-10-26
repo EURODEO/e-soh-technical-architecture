@@ -114,6 +114,7 @@ plantuml::puml/c4-container-diagram.puml[format=png, alt="C4 container diagram"]
 //image::https://github.com/EURODEO/e-soh-c4/blob/main/03-container-diagram/c4-container-diagram.png[C4 container diagram, 1000]
 
 On the right is the Central E-SOH API Endpoint. In the middle are all the components of an E-SOH local instance. Each local E-SOH instance consists of 7 components:
+
 1. Ingestion. This component will take care of the ingestion of observation data both via push and pull mechanisms.  
 2. Notification service. This component provides notifications to the external systems as soon as new data is ingested, so the data can be pulled by the external systems.
 3. Output encoder. This component is called upon by the Access API if a user wants a specific format like BUFR.
@@ -128,6 +129,10 @@ On the right is the Central E-SOH API Endpoint. In the middle are all the compon
 == Detailed Design
 
 === Component Design
+
+==== Notification Service
+
+Based on investigations documented in the link:https://github.com/EURODEO/e-soh-poc-report[E-SOH PoC Report], RabbitMQ is the technology choice for the E-SOH Notification Service. The main drawback is that it does not support MQTT V5 but we expect that this is coming.
 
 ==== Data and Metadata Store
 
@@ -342,17 +347,35 @@ A catalogue can also be deployed as an API with well known endpoints for retriev
 
 Full OGC API Records specification can be found on the link:https://ogcapi.ogc.org/records/[OGC records website].
 
-=== API Authentication and Authorization
+==== API Authentication and Authorization
   
 For API Authentication and Authorization E-SOH will be relying on the FEMDI implementation. FEMDI will implement these techniques on later iterations.
 
-=== API Rate Limiting and Throttling
+==== API Rate Limiting and Throttling
 
 The OGC API Features and OGC API EDR standards support specifying limits on number of returned responses on both client and server side. Server side limiting will support this throttling functionality and could be one option to be used at the API level. Clients can also ask to limit the response and in this case the server should limit the number of responses and enable paging functionality. If responses exceed the limit the client is given a "next" link to get more responses.
 
 Additionally, APIs could and should be protected on the network level for example based on IP address and/or other possible identifiers. This kind of hard limiting can be understood as rate limiting. In this case the server should respond with HTTP 429 "Too Many Requests" response. Note that the server in this case can be something else than the actual server providing the API, i.e., an external firewall or load balancer.
 
 The FEMDI, WIS2 and E-SOH documentation does not directly mention API Rate limiting and throttling. Two E-SOH requirements, link:https://eurodeo.github.io/e-soh-requirements/#_f02_247_availability[F02] and link:https://eurodeo.github.io/e-soh-requirements/#_f28_e_soh_to_scale_to_user_demands_for_data[F28], however, indirectly touch on the issue. It is assumed that the above measures will be sufficient to address these requirements.
+
+==== Software Technology Choice
+
+The link:https://pygeoapi.io/[pygeoapi] toolbox is a Python server implementation of the OGC API suite of standards.
+
+E-SOH will employ pygeoapi for serving the OGC EDR and Records APIs, since this is part of an established international environment, as well as in some already existing projects at MET Norway. Since E-SOH has a clear deadline, it is important to be able to reuse as much as possible, and the project will benefit from external efforts.
+
+Benefits:
+
+* There is an established process around working with metadata standards
+* Open-Source Software Reuse
+* Access to experienced people with insight in the implementation
+
+Concerns:
+
+* A plugin for pygeoapi needs to be developed to interact with the E-SOH Data and Metadata Store
+* There is some risk that we will not be able to implement necessary functionalities, and the time it will take to implement new solutions is highly uncertain. Since we do not know if modules fit together.
+* Danger of building a solution that is too complex in relation to what we need. KNMI has demonstrated that, with little code, we can implement a simple EDR API that can read data from storage. However, this cannot support metadata interoperability, which is important.
 
 == Security and Privacy
 

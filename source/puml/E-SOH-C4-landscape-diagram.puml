@@ -6,8 +6,8 @@
 ' or use local:
 '!include C4_Context.puml
 
-LAYOUT_TOP_DOWN()
-'LAYOUT_LEFT_RIGHT()
+'LAYOUT_TOP_DOWN()
+LAYOUT_LEFT_RIGHT()
 'LAYOUT_AS_SKETCH()
 'LAYOUT_WITH_LEGEND()
 
@@ -18,9 +18,9 @@ title E-SOH C4 landscape diagram (C4 model: https://c4model.com/)
 
 Person(consumer, "Data Consumer")
 
-Enterprise_Boundary(femdi_all, "FEMDI") {
-    System_Ext("femdigw", "FEMDI API gateway", "Central FEMDI API that gives access to all types of data (e.g., real-time station observations, radar, climate, warnings).")
-}
+System_Ext(hvd, "EU/HVD", "EU/HVD follows the EU DCAT-AP metadata standard.")
+
+System_Ext("femdigw", "FEMDI API gateway", "Central FEMDI API that gives access to all types of data (e.g., real-time station observations, radar, climate, warnings). FEMDI follows the WMO Core Metadata Profile 2.")
 
 Enterprise_Boundary(esoh_all, "E-SOH federated system"){
   System(centralapi, "Central E-SOH API end-point", "Central end-point linking the E-SOH local instances to provide a unified interface.")
@@ -30,11 +30,8 @@ Enterprise_Boundary(esoh_all, "E-SOH federated system"){
   }
 }
 
-' WIS2 box:
-System_Boundary(wis2shared_all, "WIS2 shared services"){
-    System_Ext(wis2shared, "WIS2.0 Shared Services", "Catalogue, Message Broker, Service manager, BUFR to GTS forwarding.")
-    'System_Ext(wis2gts, "WMO WIS2.0 GTS relay", "Relay the BUFR files into GTS.")
-}
+System_Ext(wis2shared, "WIS2.0 Shared Services", "Catalogue, Message Broker, Service manager, BUFR to GTS forwarding.")
+'System_Ext(wis2gts, "WMO WIS2.0 GTS relay", "Relay the BUFR files into GTS.")
 
 System_Boundary(esoh_local_implementation, "Local E-SOH implementation"){
     System_Ext(obscoll_local,"Local Observations Collection", "NMHS Observation Collection system")
@@ -55,8 +52,10 @@ Rel(esoh, oscar, "gets metadata from", "https")
 Rel(consumer, wis2shared ,"query data")
 Rel("consumer", "femdigw","query data")
 Rel(femdigw, centralapi, "forwards data queries")
+Rel(hvd, centralapi, "forwards data queries")
 Rel(centralapi, esoh_local, "listens to event queue, and pulls data from")
 Rel(centralapi, esoh, "listens to event queue, and pulls data from")
+
 
 'layout:
 'Lay_U("oscar", "obscoll")
