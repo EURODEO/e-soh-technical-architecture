@@ -237,7 +237,11 @@ The final data store will be selected from the three options mentioned above (Re
 ==== Dataset
 
 A *dataset* is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata).
-In the scope of E-SOH we treat a dataset as the combination of one observation platform, one type of measurment and one instruemnt as one dataset. Each dataset only have a validity time of maximum 24h before current datetime, but can have as little as 1 second. Each dataset are dynamiccly created and deleted. This is a consquense of the rolling buffer design of the E-SOH datastore. If a platform do not create a reading for a certain paramater for 24h the dataset is dropped. If such an observation where to be submitted again at a later date, the dataset will be recreated at that time.
+In the scope of E-SOH, we define a dataset as the combination of one instrument on one observation platform, with the associated measurements as given by their standard names according to the link:https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html[CF convention standard names vocabulary].
+
+* Time coverage: Each dataset have a validity time of maximum 24 hours. Until its validity time has become 24 hours, the dataset will grow due to addition of new data.
+* Each dataset is dynamically created and deleted. This is a consequence of the rolling buffer design of the E-SOH data store.
+* If a platform does not create a reading for a certain parameter during 24 hours, there will be no dataset for this period. If such an observation where to be submitted again at a later time, a new dataset will be created.
 
 *NetCDF and CF-NetCDF*
 
