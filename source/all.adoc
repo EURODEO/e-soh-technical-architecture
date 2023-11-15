@@ -235,6 +235,7 @@ The final data store will be selected from the three options mentioned above (Re
 === Data Models
 
 A *dataset* is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata). In the E-SOH context, we consider the (Near-) Real-Time (NRT) data as extracts of externally available datasets like, e.g., climate timeseries. We refer to these datasets as "parent" datasets, whereas the extracts are referred to as "child" datasets.
+In the scope of E-SOH we treat a dataset as the combination of one observation platform, one type of measurment and one instruemnt as one dataset. Each dataset only have a validity time of maximum 24h before current datetime, but can have as little as 1 second. Each dataset are dynamiccly created and deleted. This is a consquense of the rolling buffer design of the E-SOH datastore. If a platform do not create a reading for a certain paramater for 24h the dataset is dropped. If such an observation where to be submitted again at a later date, the dataset will be recreated at that time.
 
 *NetCDF and CF-NetCDF*
 
