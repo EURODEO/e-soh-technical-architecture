@@ -28,7 +28,7 @@ System_Boundary(esoh_system, "E-SOH System"){
             Container(oscar_db,"OSCAR db","json file",$tags=File)
             Container(oscar_updater,"OSCAR Updater","weekly update")
         }
-        Container(input_handler, "Input handler", "", "Handles input, and forwards incoming data to correct input decoder")
+        Container(ingest_api, "Ingest API", "", "Handles input, and forwards incoming data to correct input decoder")
         System_Boundary(input_decoder, "Input Decoder"){
             Container(bufr_decoder, "BUFR decoder", "", "Decode BUFR, add missing metadata and generate E-SOH MQTT message")
             Container(netcdf_decoder, "NetCDF decoder", "", "Decode NetCDF, add missing metadata and generate E-SOH MQTT message")
@@ -52,10 +52,10 @@ System_Boundary(esoh_system, "E-SOH System"){
 System_Ext(subscribers,"Ext Subscribers", "Ext subscriber")
 
 
-Rel(csv,input_handler,"File or bytestream")
-Rel(bufr,input_handler,"File or bytestream")
-Rel(netcdf,input_handler,"File or bytestream")
-Rel(input_handler, input_decoder, "File or bytestream")
+Rel(csv,ingest_api,"File or bytestream")
+Rel(bufr,ingest_api,"File or bytestream")
+Rel(netcdf,ingest_api,"File or bytestream")
+Rel(ingest_api, input_decoder, "File or bytestream")
 Rel(csv_decoder,mqtt_meta,"MQTT json messages")
 Rel(bufr_decoder,mqtt_meta,"MQTT json messages")
 Rel(netcdf_decoder,mqtt_meta,"MQTT json messages")
