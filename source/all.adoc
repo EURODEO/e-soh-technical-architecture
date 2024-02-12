@@ -130,6 +130,27 @@ On the right is the Central E-SOH API Endpoint. In the middle are all the compon
 
 === Component Design
 
+==== Data Ingestion Service
+
+The Ingestion Service handles the incoming data and this component sends the message to the Notification Service.
+
+[#img-component-diagram-ingest]
+.C4 component diagram for the Ingestion Service.
+plantuml::puml/c4-container-ingest.puml[format=png, alt="C4 Ingest Service coontainer diangram"]
+
+The data processing chain
+
+* Input handler: grab the data and send it to the Input decoder
+* Input decoder: call the right decoder for the input, send message to the Message Handler
+** BUFR decoder: decode data, map data to cf_variables, add missing metadata(platform, location) from OSCAR, generate message
+** CSV decoder: not yet implemented
+** NetCDF decoder: extraxt data, map data to cf_variables, generate message
+* Message handler: validate messages and send to the db and to the Notification Service
+** MQTT Meta: add/update the meta information of the message(id, pubtime, data_id, metadata_id)
+** MQTT Validator: validate the messages
+** DB Ingestion: ingest to the db, and trigger the message sending
+** MQTT Message Sender: send message to Notification Service if stored
+
 ==== Notification Service
 
 Based on investigations documented in the link:https://github.com/EURODEO/e-soh-poc-report[E-SOH PoC Report], RabbitMQ is the technology choice for the E-SOH Notification Service. The main drawback is that it does not support MQTT V5 but we expect that this is coming.
