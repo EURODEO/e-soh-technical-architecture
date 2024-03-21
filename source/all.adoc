@@ -68,9 +68,7 @@ The vision of the EUMETNET Supplementary Observations dataHub (E-SOH) is to deli
 
 In this diagram the context of the E-SOH system is depicted.
 
-[#img-top-level-C4-context-diagram]
-.Top-level C4 context diagram.
-plantuml::puml/E-SOH-C4-toplevel-context-diagram.puml[format=png, alt="Top-level C4 context diagram"]
+[[/images/C4_landscape_diagram.png]]
 
 On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
 On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
