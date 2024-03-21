@@ -332,20 +332,8 @@ A full description of the EDR API can be found on the link:https://docs.ogc.org/
 
 ==== OGC API Records
 
-WIS 2.0 recommends the "OGC API - Records" standard for the (discovery) metadata catalogue. E-SOH will use this API to provide relevant metadata to users and to WIS 2.0.
+The WIS2.0 Global Discovery Catalogue use "OGC API - Records" for the discovery metadata. E-SOH supports this API with the OGC EDR API, but does not implement an OGC Records API itself. WIS 2.0 compliant discovery metadata can be retrvieved with an "collections/observations/dataset" call.
 
-A Record makes a resource discoverable by providing summary information (metadata) about the resource. In this context, resources are things that would be useful to a user or developer, such as features.
-
-OGC API - Records provides a way to browse or search a curated collection of records known as a catalogue. This specification envisions deploying a catalogue as:
-
-* a collection of static files,
-* a collection of records accessed via an API.
-
-A catalogue can be deployed as a static collection of records stored in web-accessible files and typically co-located with the resources each record is describing. Such a deployment is amenable to browsing using a web browser or being crawled by a search engine crawler.
-
-A catalogue can also be deployed as an API with well known endpoints for retrieving information about the catalogue, retrieving records from the catalogue and searching the catalogue for sub-sets of records that satisfy user-defined search criteria.
-
-Full OGC API Records specification can be found on the link:https://ogcapi.ogc.org/records/[OGC records website].
 
 ==== API Authentication and Authorization
   
