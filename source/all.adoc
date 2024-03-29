@@ -69,6 +69,7 @@ The vision of the EUMETNET Supplementary Observations dataHub (E-SOH) is to deli
 In this diagram the context of the E-SOH system is depicted.
 
 [[/images/C4_landscape_diagram.png]]
+[[https://github.com/EURODEO/e-soh-technical-architecture/blob/main/docs/images/C4_landscape_diagram.png]]
 
 On the left are the data producers (mainly NMHS's) who produce the Observation data and related metadata.
 On the right hand side are the data consumers who use the data via data consuming systems (f.i. the FEMDI Data catalogue and API)
