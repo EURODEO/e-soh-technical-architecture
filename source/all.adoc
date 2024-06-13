@@ -141,25 +141,21 @@ RabbitMQ is chosen as E-SOH Notification Service.
 
 === Data Models
 
-A *dataset* is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata). In the E-SOH context, we consider the (Near-) Real-Time (NRT) data as extracts of externally available datasets like, e.g., climate timeseries. We refer to these datasets as "parent" datasets, whereas the extracts are referred to as "child" datasets.
+==== Dataset
 
-*NetCDF and CF-NetCDF*
+A *dataset* is defined as a collection of data records and their associated information content (e.g., use, discovery, provenance metadata).
+In the scope of E-SOH, we define a dataset as the combination of one instrument on one observation platform, with the associated measurements as given by their standard names according to the link:https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html[CF convention standard names vocabulary].
 
-[NetCDF] is a binary, platform-independent, domain-neutral data format for multidimensional data. Essentially, a NetCDF file is a collection of multidimensional arrays, plus metadata provided as key-value pairs. Metadata conventions are required to specialise NetCDF for particular communities. The Climate and Forecast conventions are the pre-eminent conventions for geospatial NetCDF data. NetCDF files that conform to these conventions are known as "CF-NetCDF files". Note that there are different varieties of the NetCDF format and data model. Here we are concerned with the "classic" NetCDF data model.
+* Time coverage: Each dataset have a validity time of maximum 24 hours. Until its validity time has become 24 hours, the dataset will grow due to addition of new data.
+* Each dataset is dynamically created and deleted. This is a consequence of the rolling buffer design of the E-SOH data store.
+* If a platform does not create a reading for a certain parameter during 24 hours, there will be no dataset for this period. If such an observation where to be submitted again at a later time, a new dataset will be created.
 
-*CoverageJSON*
-The overall concepts of CoverageJSON are close to those of the [ISO19123] standard and the OGC standard Coverage Implementation Schema ([OGC-CIS]), which specialises ISO19123.
-https://www.iso.org/standard/40121.html
-
-The overall structure of CoverageJSON is quite close to that of [NetCDF], consisting essentially of a set of orthogonal domain axes that can be combined in different ways. One major difference is that in CoverageJSON, there is an explicit Domain object, whereas in NetCDF the domain is specified implicitly by linking data variables with coordinate variables. One consequence of this is that NetCDF files can contain several domains and hence several Coverages. A NetCDF file could therefore be converted to a single Coverage or a Coverage Collection in CoverageJSON.
-
-==== Metadata specification
+===== Metadata specification
 
 The following principles shall be followed:
 
 * A minimum set of (required and recommended) metadata must follow the data, i.e., as part of the data files output from E-SOH APIs and the event queue.
 * Input datasets must be enriched by required metadata upon ingestion, if it is not already provided.
-* In order to obtain traceability, a child dataset must reference its parent dataset by the parent's metadata identification. The parent dataset's metadata identification is expected to be persistent and actionable, but the NRT dataset identification is not.
 * To support interoperability, it must be possible to translate from the agreed data-following standards to other standards (e.g., DCAT, ISO19115, etc.).
 * All datasets must have defined use constraints provided by a standard license or release statement ("no rights reserved").
 * All datasets must have defined access constraints (in particular for fully or partly restricted datasets, although this is not currently in the scope  of E-SOH). The optional access constraints must be defined by a controlled vocabulary.
@@ -174,13 +170,24 @@ Recommendations:
 * The CF conventions should be followed to enable Reuse
 * Use a standard license, e.g., link:https://creativecommons.org/licenses/by/4.0/[CC-BY-4.0], provided by the URL in the form similar to "<URL> (<Identifier>)" using elements from the link:https://spdx.org/licenses/[SPDX license list].
 
-==== BUFR
+=== NetCDF-CF
 
-==== CSV
+[NetCDF] is a binary, platform-independent, domain-neutral data format for multidimensional data. Essentially, a NetCDF file is a collection of multidimensional arrays, plus metadata provided as key-value pairs. Metadata conventions are required to specialise NetCDF for particular communities. The Climate and Forecast conventions are the pre-eminent conventions for geospatial NetCDF data. NetCDF files that conform to these conventions are known as "CF-NetCDF files". Note that there are different varieties of the NetCDF format and data model. Here we are concerned with the "classic" NetCDF data model.
 
-==== GeoJSON
+=== CoverageJSON
 
-==== MQTT message payload
+The overall concepts of CoverageJSON are close to those of the [ISO19123] standard and the OGC standard Coverage Implementation Schema ([OGC-CIS]), which specialises ISO19123.
+https://www.iso.org/standard/40121.html
+
+The overall structure of CoverageJSON is quite close to that of [NetCDF], consisting essentially of a set of orthogonal domain axes that can be combined in different ways. One major difference is that in CoverageJSON, there is an explicit Domain object, whereas in NetCDF the domain is specified implicitly by linking data variables with coordinate variables. One consequence of this is that NetCDF files can contain several domains and hence several Coverages. A NetCDF file could therefore be converted to a single Coverage or a Coverage Collection in CoverageJSON.
+
+=== GeoJSON
+
+=== BUFR
+
+=== CSV
+
+=== MQTT message payload
 
 The (draft) link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html[WMO WIS2 Notification Message Encoding] defines the content, structure, and encoding for the WIS2 Notification Message Encoding. The standard is an extension of the link:https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-DRAFT.html#_footnotedef_3[OGC API - Features standard].
 
